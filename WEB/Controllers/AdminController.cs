@@ -10,25 +10,21 @@ using taka.Utils;
 namespace taka.Controllers
 {
     //[Authorize(Users = "admin")]
-    [Authorize(Users = "4")]
+    [Authorize(Users = "1")]
     public class AdminController : Controller
     {
 
         TakaDB dB = new TakaDB();
         // GET: Admin
-        public ActionResult Book(int page = 1, string text = "", int cate = 0, int sort = 0, int pageSize = 16, int type = 0, int language = 0, int priceFrom = 0, int priceTo = 0)
+        public ActionResult Book(int page = 1, string text = "", int cate = 0, int sort = 0, int pageSize = 16, int priceFrom = 0, int priceTo = 0)
         {
             ViewBag.ListCate = dB.GetCategories();
-            ViewBag.ListType = dB.GetTypes();
-            ViewBag.ListLanguage = dB.GetLanguages();
             ViewBag.Cate = cate;
             ViewBag.Sort = sort;
-            ViewBag.Type = type;
             if (priceFrom > priceTo)
                 priceTo = 0;
             ViewBag.PriceFrom = priceFrom;
             ViewBag.PriceTo = priceTo;
-            ViewBag.Language = language;
             ViewBag.PageSize = 16;
             ViewBag.CurrentPage = page;
             switch (sort)
@@ -51,11 +47,11 @@ namespace taka.Controllers
             {
                 ViewBag.PageSize = pageSize;
             }
-            ListBook listBook = dB.GetListBook(page, text, cate, sort, pageSize, type, language, priceFrom, priceTo);
-            ViewBag.ListPage = HelperFunctions.getNumPage(page, listBook.pages);
-            ViewBag.maxPage = listBook.pages;
+            ListTea listTea = dB.GetListTea(page, text, cate, sort, pageSize, priceFrom, priceTo);
+            ViewBag.ListPage = HelperFunctions.getNumPage(page, listTea.pages);
+            ViewBag.maxPage = listTea.pages;
             ViewBag.TextSearch = text;
-            ViewBag.list = listBook.books;
+            ViewBag.list = listTea.TEAs;
             return View();
         }
 
@@ -75,33 +71,9 @@ namespace taka.Controllers
             ViewBag.list = dB.GetCategories();
             return View();
         }
-        public ActionResult Publisher()
-        {
-            ViewBag.list = dB.GetPublishers();
-            return View();
-        }
-        public ActionResult Author()
-        {
-            ViewBag.list = dB.GetAuthors();
-            return View();
-        }
-        public ActionResult Type()
-        {
-            ViewBag.list = dB.GetTypes();
-            return View();
-        }
-        public ActionResult Language()
-        {
-            ViewBag.list = dB.GetLanguages();
-            return View();
-        }
         public ActionResult Edit(int id = -1)
         {
             ViewBag.listCategories = dB.GetCategories();
-            ViewBag.listAuthors = dB.GetAuthors();
-            ViewBag.listPublishers = dB.GetPublishers();
-            ViewBag.listLanguages = dB.GetLanguages();
-            ViewBag.listTypes = dB.GetTypes();
             try
             {
                 if (id == -1)
@@ -123,16 +95,16 @@ namespace taka.Controllers
             string Title,
             int Price,
             int idCategory,
-            int idAuthor,
-            int idPublisher,
-            int idLanguage,
-            int idType,
-            string Page,
-            string Date,
-            int Quantity,
-            string Description)
+            int Amount,
+            string Description,
+            string Story,
+            string Ingredient,
+            string Function,
+            string Caffein,
+            string Weight,
+            string Use)
         {
-            dB.EditBook(ID, images_delete, Images, Title, Price, idCategory, idAuthor, idPublisher, idLanguage, idType, Page, Date, Quantity, Description);
+            dB.EditBook(ID, images_delete, Images, Title, Price, idCategory, Amount, Description, Story, Ingredient, Function, Caffein, Weight, Use);
             return RedirectToAction("Edit", "Admin", new { id = ID });
         }
 
@@ -143,7 +115,7 @@ namespace taka.Controllers
             {
                 if (id == -1)
                     throw new Exception("Not found");
-                dB.DeleteBook(id, false);
+                dB.DeleteTea(id, false);
             }
             catch (Exception)
             {
@@ -158,26 +130,23 @@ namespace taka.Controllers
             string Title,
             int Price,
             int idCategory,
-            int idAuthor,
-            int idPublisher,
-            int idLanguage,
-            int idType,
-            string Page,
-            string Date,
-            int Quantity,
-            string Description)
+            int Amount,
+            string Description,
+            string Story,
+            string Ingredient,
+            string Function,
+            string Caffein,
+            string Weight,
+            string Use)
         {
-            Book book = dB.AddBook(Images, Title, Price, idCategory, idAuthor, idPublisher, idLanguage, idType, Page, Date, Quantity, Description);
-            return RedirectToAction("Detail", "Home", new { id = book.ID });
+            TEA tea = dB.AddTea(Images, Title, Price, idCategory, Amount, Description, Story, Ingredient, Function, Caffein, Weight, Use);
+            return RedirectToAction("Detail", "Home", new { id = tea.ID });
         }
 
         public ActionResult Add()
         {
             ViewBag.listCategories = dB.GetCategories();
-            ViewBag.listPublishers = dB.GetPublishers();
-            ViewBag.listAuthors = dB.GetAuthors();
-            ViewBag.listLanguages = dB.GetLanguages();
-            ViewBag.listTypes = dB.GetTypes();
+            
             return View();
         }
 
@@ -211,78 +180,8 @@ namespace taka.Controllers
             return RedirectToAction("Category", "Admin");
         }
 
-        public ActionResult UpdateLanguage(int id, string name)
-        {
-            dB.UpdateLanguage(id, name);
-            return RedirectToAction("Language", "Admin");
-        }
-
-        public ActionResult AddLanguage(string name)
-        {
-            dB.AddLanguage(name);
-            return RedirectToAction("Language", "Admin");
-        }
-
-        public ActionResult RemoveLanguage(int id)
-        {
-            dB.RemoveLanguage(id);
-            return RedirectToAction("Language", "Admin");
-        }
-
-        public ActionResult UpdatePublisher(int id, string name)
-        {
-            dB.UpdatePublisher(id, name);
-            return RedirectToAction("Publisher", "Admin");
-        }
-
-        public ActionResult AddPublisher(string name)
-        {
-            dB.AddPublisher(name);
-            return RedirectToAction("Publisher", "Admin");
-        }
-
-        public ActionResult RemovePublisher(int id)
-        {
-            dB.RemovePublisher(id);
-            return RedirectToAction("Publisher", "Admin");
-        }
+        
 
 
-        public ActionResult UpdateAuthor(int id, string name)
-        {
-            dB.UpdateAuthor(id, name);
-            return RedirectToAction("Author", "Admin");
-        }
-
-        public ActionResult AddAuthor(string name)
-        {
-            dB.AddAuthor(name);
-            return RedirectToAction("Author", "Admin");
-        }
-
-        public ActionResult RemoveAuthor(int id)
-        {
-            dB.RemoveAuthor(id);
-            return RedirectToAction("Author", "Admin");
-        }
-
-
-        public ActionResult UpdateType(int id, string name)
-        {
-            dB.UpdateType(id, name);
-            return RedirectToAction("Type", "Admin");
-        }
-
-        public ActionResult AddType(string name)
-        {
-            dB.AddType(name);
-            return RedirectToAction("Type", "Admin");
-        }
-
-        public ActionResult RemoveType(int id)
-        {
-            dB.RemoveType(id);
-            return RedirectToAction("Type", "Admin");
-        }
     }
 }
