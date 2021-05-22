@@ -1,9 +1,9 @@
-﻿@model taka.Models.Enitities.User
+﻿@model taka.Models.Enitities.USER
 
 @{
-    List<taka.Models.Enitities.Order> processingOrders = ViewBag.ProcessingOrders;
-    List<taka.Models.Enitities.Order> doneOrders = ViewBag.DoneOrders;
-    List<taka.Models.Enitities.Address> addresses = ViewBag.Addresses;
+    List<taka.Models.Enitities.ORDER> processingOrders = ViewBag.ProcessingOrders;
+    List<taka.Models.Enitities.ORDER> doneOrders = ViewBag.DoneOrders;
+    List<taka.Models.Enitities.ADDRESS> addresses = ViewBag.Addresses;
 
     ViewBag.Title = "Takasa";
     Layout = "~/Views/User/_LayoutUser.cshtml";
@@ -31,18 +31,18 @@
                     {
 
                         <li class="list-group-item list-group-item-action" data-toggle="collapse" data-target=".detail_@item.ID">
-                            <h5>@item.ClientName</h5>
-                            <strong>@item.Shipper</strong>
-                            <p>@addresses.Where(x => x.ID == item.IDAddress).ToList().First().Address1</p>
-                            <h6 class="text-right" style="color:#ee2d4d;">@String.Format(new System.Globalization.CultureInfo("vi-VN"), "{0:N0}", item.TotalPrice) VND</h6>
+                            <h5>@item.CLIENT_NAME</h5>
+                            <strong>@item.SHIPPER</strong>
+                            <p>@addresses.Where(x => x.ID == item.ID_ADDRESS).ToList().First().ADDRESS1</p>
+                            <h6 class="text-right" style="color:#ee2d4d;">@String.Format(new System.Globalization.CultureInfo("vi-VN"), "{0:N0}", item.TOTAL_PRICE) VND</h6>
                         </li>
-                        foreach (var book in item.OrderDetails.ToList())
+                        foreach (var tea in item.ORDER_DETAIL.ToList())
                         {
                             <li class="list-group-item list-group-item-action collapse detail_@item.ID">
-                                <img src="@book.Book.Images.First().Url" style="width:80px; height:80px;" />
-                                <strong>@book.Book.Title</strong>
+                                <img src="@tea.TEA.IMAGEs.First().URL" style="width:80px; height:80px;" />
+                                <strong>@tea.TEA.TITLE</strong>
 
-                                <p align="right">Số lượng: @book.Quantity</p>
+                                <p align="right">Số lượng: @tea.AMOUNT</p>
                             </li>
 
                         }
@@ -55,19 +55,19 @@
                     @foreach (var item in doneOrders)
                     {
                         <li class="list-group-item list-group-item-action" data-toggle="collapse" data-target=".detail_@item.ID">
-                            <h5>@item.ClientName</h5>
-                            <strong>@item.Shipper</strong>
-                            <p>@addresses.Where(x => x.ID == item.IDAddress).ToList().First().Address1</p>
-                            <h6 class="text-right" style="color:#ee2d4d;">@String.Format(new System.Globalization.CultureInfo("vi-VN"), "{0:N0}", item.TotalPrice) VND</h6>
+                            <h5>@item.CLIENT_NAME</h5>
+                            <strong>@item.SHIPPER</strong>
+                            <p>@addresses.Where(x => x.ID == item.ID_ADDRESS).ToList().First().ADDRESS1</p>
+                            <h6 class="text-right" style="color:#ee2d4d;">@String.Format(new System.Globalization.CultureInfo("vi-VN"), "{0:N0}", item.TOTAL_PRICE) VND</h6>
                         </li>
 
-                        foreach (var book in item.OrderDetails.ToList())
+                        foreach (var tea in item.ORDER_DETAIL.ToList())
                         {
                             <li class="list-group-item list-group-item-action collapse detail_@item.ID">
-                                <img src="@book.Book.Images.First().Url" style="width:80px; height:80px;" />
-                                <strong>@book.Book.Title</strong>
+                                <img src="@tea.TEA.IMAGEs.First().URL" style="width:80px; height:80px;" />
+                                <strong>@tea.TEA.TITLE</strong>
 
-                                <p align="right">Số lượng: @book.Quantity</p>
+                                <p align="right">Số lượng: @tea.AMOUNT</p>
                             </li>
 
                         }

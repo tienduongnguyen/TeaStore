@@ -1,4 +1,4 @@
-﻿@model IEnumerable<taka.Models.Enitities.Cart>
+﻿@model IEnumerable<taka.Models.Enitities.CART>
 
 @{
     ViewBag.Title = "Giỏ hàng";
@@ -28,18 +28,18 @@
                             <div class="col-md-5 col-lg-3 col-xl-3">
                                 <div class="view zoom overlay z-depth-1 rounded mb-3 mb-md-0">
                                     <img class="img-fluid w-100"
-                                         src="@item.Book.Images.First().Url" alt="Ảnh của 1 cuốn sách">
+                                         src="@item.TEA.IMAGEs.First().URL" alt="Ảnh của 1 cuốn sách">
                                 </div>
                             </div>
                             <div class="col-md-6 col-lg-8 col-xl-8">
                                 <div>
                                     <div class="d-flex justify-content-between">
                                         <div class="col-8">
-                                            <h4>@item.Book.Title</h4>
+                                            <h4>@item.TEA.TITLE</h4>
 
-                                            <p class="mb-3 text-muted text-uppercase small">Tác giả: @item.Book.Author.Name</p>
-                                            <p class="mb-3 text-muted text-uppercase small">Nhà Xuất Bản: @item.Book.Publisher.Name</p>
-                                            <p class="mb-2 text-muted text-uppercase small">Số lượng: @item.Book.Quantity</p>
+                                            @*<p class="mb-3 text-muted text-uppercase small">Tác giả: @item.Book.Author.Name</p>
+                                            <p class="mb-3 text-muted text-uppercase small">Nhà Xuất Bản: @item.Book.Publisher.Name</p>*@
+                                            <p class="mb-2 text-muted text-uppercase small">Số lượng: @item.TEA.AMOUNT</p>
 
                                         </div>
                                         <div class="col-4">
@@ -47,8 +47,8 @@
                                                 <a class="btn btn-outline-light" onclick="downQuantity('@item.ID')" style="border:none; ">
                                                     <ion-icon name="remove-outline"></ion-icon>
                                                 </a>
-                                                <input class="quantity amount" value="@item.Quantity" type="text" style="width: 25px; text-align: center; border:none;" id="inputQuantity_@item.ID" oninput="onChangeTextQuantity('@item.ID')">
-                                                <div hidden class="amount">@item.Book.Price</div>
+                                                <input class="quantity amount" value="@item.AMOUNT" type="text" style="width: 25px; text-align: center; border:none;" id="inputQuantity_@item.ID" oninput="onChangeTextQuantity('@item.ID')">
+                                                <div hidden class="amount">@item.TEA.PRICE</div>
                                                 <a class="btn btn-outline-light" onclick="upQuantity('@item.ID')" style="border:none;">
                                                     <ion-icon name="add-outline"></ion-icon>
                                                 </a>
@@ -61,7 +61,7 @@
                                     </div>
                                     <div class="d-flex justify-content-between align-items-center">
                                         <div>
-                                            <a href="/User/DeleteCartItem?idBook=@item.idBook" type="button" class="card-link-secondary small text-uppercase ml-3">
+                                            <a href="/User/DeleteCartItem?idBook=@item.ID_TEA" type="button" class="card-link-secondary small text-uppercase ml-3">
                                                 <i class="fas fa-trash-alt mr-1"></i> Xóa mặt hàng
                                             </a>
 
@@ -69,7 +69,7 @@
                                         <p class="mb-0">
                                             <span>
                                                 <strong id="summary" style="color:#ee4d2d">
-                                                    VND: @String.Format(new System.Globalization.CultureInfo("vi-VN"), "{0:N0}", item.Book.Price)
+                                                    VND: @String.Format(new System.Globalization.CultureInfo("vi-VN"), "{0:N0}", item.TEA.PRICE)
                                                 </strong>
                                             </span>
                                         </p>
@@ -195,7 +195,7 @@
     let callAPIQuantity = (idCart, quantity) => {
         $.ajax({
             type: "POST",
-            url: `/User/ChangeQuantity`,
+            url: `/User/ChangeAmount`,
             data: { idCart, quantity },
             success: data => { }
         });

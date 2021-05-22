@@ -59,7 +59,7 @@ namespace taka.Controllers
             return View(listCarts);
         }
         [HttpPost]
-        public JsonResult ChangeQuantity(int idCart, int amount)
+        public JsonResult ChangeAmount(int idCart, int amount)
         {
             try
             {
