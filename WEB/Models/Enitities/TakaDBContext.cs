@@ -8,7 +8,7 @@ namespace taka.Models.Enitities
     public partial class TakaDBContext : DbContext
     {
         public TakaDBContext()
-            : base("name=TeaStore")
+            : base("name=TakaDBContext")
         {
         }
 

@@ -13,9 +13,9 @@ namespace taka.Models.DatabaseInteractive
     public class BillItem
     {
         public int id { get; set; }
-        public string bookName { get; set; }
+        public string teaName { get; set; }
         public int price { get; set; }
-        public int quantity { get; set; }
+        public int amount { get; set; }
     }
     public class ListTea
     {
@@ -407,8 +407,8 @@ namespace taka.Models.DatabaseInteractive
                 CART cart = takaDB.CARTs.Where(x => x.ID == id).ToList().First();
                 billItem.id = cart.ID;
                 billItem.price = (int)cart.TEA.PRICE;
-                billItem.quantity = (int)cart.AMOUNT;
-                billItem.bookName = cart.TEA.TITLE;
+                billItem.amount = (int)cart.AMOUNT;
+                billItem.teaName = cart.TEA.TITLE;
                 billItems.Add(billItem);
             }
 
