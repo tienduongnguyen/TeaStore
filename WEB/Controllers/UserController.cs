@@ -20,50 +20,50 @@ namespace taka.Controllers
         }
         public ActionResult Purchased()
         {
-            User user = (User)Session[C.SESSION.UserInfo];
+            USER user = (USER)Session[C.SESSION.UserInfo];
             ViewBag.Addresses = db.GetAddresses(user.ID);
             ViewBag.ProcessingOrders = db.GetProcessingOrders(user.ID);
             ViewBag.DoneOrders = db.GetDoneOrders(user.ID);
             return View(user);
         }
-        public ActionResult AddToCart(int idBook, int quantity)
+        public ActionResult AddToCart(int idTea, int amount)
         {
-            User user = (User)Session[C.SESSION.UserInfo];
-            db.AddCart(idBook, user.ID, quantity);
+            USER user = (USER)Session[C.SESSION.UserInfo];
+            db.AddCart(idTea, user.ID, amount);
             TempData[C.TEMPDATA.Message] = "Thêm vào giỏ hàng thành công";
-            return RedirectToAction("Detail", "Home", new { id = idBook });
+            return RedirectToAction("Detail", "Home", new { id = idTea });
         }
-        public ActionResult BuyNow(int idBook, int quantity)
+        public ActionResult BuyNow(int idTea, int amount)
         {
-            User user = (User)Session[C.SESSION.UserInfo];
-            return RedirectToAction("Payment", "User", new { idCarts = db.AddCart(idBook, user.ID, quantity).ID });
+            USER user = (USER)Session[C.SESSION.UserInfo];
+            return RedirectToAction("Payment", "User", new { idCarts = db.AddCart(idTea, user.ID, amount).ID });
         }
         public ActionResult Payment(int[] idCarts)
         {
             var listItems = db.GetBillItems(idCarts);
-            User user = (User)Session[C.SESSION.UserInfo];
+            USER user = (USER)Session[C.SESSION.UserInfo];
             ViewBag.addresses = db.GetAddresses(user.ID);
             return View(listItems);
         }
         [HttpPost]
         public ActionResult CheckOut(int[] id_cart, int id_address, int totalPrice, string shipper, string fullName, string phone, string address, string message)
         {
-            User user = (User)Session[C.SESSION.UserInfo];
+            USER user = (USER)Session[C.SESSION.UserInfo];
             db.CheckOut(id_cart, id_address, totalPrice, shipper, user.ID, fullName, phone, address, message);
             return RedirectToAction("Index", "Home");
         }
         public ActionResult ShoppingCart()
         {
-            User user = (User)Session[C.SESSION.UserInfo];
-            List<Cart> listCarts = db.GetListCarts(user.ID);
+            USER user = (USER)Session[C.SESSION.UserInfo];
+            List<CART> listCarts = db.GetListCarts(user.ID);
             return View(listCarts);
         }
         [HttpPost]
-        public JsonResult ChangeQuantity(int idCart, int quantity)
+        public JsonResult ChangeQuantity(int idCart, int amount)
         {
             try
             {
-                db.ChangeQuantity(idCart, quantity);
+                db.ChangeAmount(idCart, amount);
                 return Json(new { status = 1 });
             }
             catch (Exception)
@@ -71,37 +71,37 @@ namespace taka.Controllers
                 return Json(new { status = 0 });
             }
         }
-        public ActionResult DeleteCartItem(int idBook)
+        public ActionResult DeleteCartItem(int idTea)
         {
-            User user = (User)Session[C.SESSION.UserInfo];
-            db.DeleteCartItem(user.ID, idBook);
+            USER user = (USER)Session[C.SESSION.UserInfo];
+            db.DeleteCartItem(user.ID, idTea);
             return RedirectToAction("ShoppingCart", "User", new { idUser = user.ID });
         }
 
         public ActionResult Infor()
         {
-            User user = (User)Session[C.SESSION.UserInfo];
+            USER user = (USER)Session[C.SESSION.UserInfo];
             return View(user);
         }
 
         public ActionResult EditUser()
         {
-            User user = (User)Session[C.SESSION.UserInfo];
+            USER user = (USER)Session[C.SESSION.UserInfo];
             return View(user);
         }
 
         [HttpPost]
         public ActionResult EditUser(string email, string fullname, string gender, string birthday)
         {
-            User user = (User)Session[C.SESSION.UserInfo];
-            Session[C.SESSION.UserInfo] = db.UpdateUser(user.Phone, email, fullname, gender, birthday);
+            USER user = (USER)Session[C.SESSION.UserInfo];
+            Session[C.SESSION.UserInfo] = db.UpdateUser(user.PHONE, email, fullname, gender, birthday);
             return RedirectToAction("Infor", "User", new { id = user.ID });
         }
 
         public ActionResult AddressDetails()
         {
-            User user = (User)Session[C.SESSION.UserInfo];
-            List<Address> listadr = db.GetAddresses(user.ID);
+            USER user = (USER)Session[C.SESSION.UserInfo];
+            List<ADDRESS> listadr = db.GetAddresses(user.ID);
             return View(listadr);
         }
 
@@ -112,28 +112,28 @@ namespace taka.Controllers
         [HttpPost]
         public ActionResult AddAddress(string name, string phone, string address)
         {
-            User user = (User)Session[C.SESSION.UserInfo];
+            USER user = (USER)Session[C.SESSION.UserInfo];
             db.AddAddress(user.ID, name, phone, address);
             return RedirectToAction("AddressDetails", "User");
         }
 
         public ActionResult EditAddress(int idAddress)
         {
-            User user = (User)Session[C.SESSION.UserInfo];
-            Address adr = db.GetAddress(idAddress);
+            USER user = (USER)Session[C.SESSION.UserInfo];
+            ADDRESS adr = db.GetAddress(idAddress);
             return View(adr);
         }
         [HttpPost]
         public ActionResult EditAddress(int idAddress, string name, string phone, string address)
         {
-            User user = (User)Session[C.SESSION.UserInfo];
+            USER user = (USER)Session[C.SESSION.UserInfo];
             db.EditAddress(idAddress, user.ID, name, phone, address);
             return RedirectToAction("AddressDetails", "User");
         }
         [HttpPost]
         public ActionResult DeleteAddress(int idAddress)
         {
-            User user = (User)Session[C.SESSION.UserInfo];
+            USER user = (USER)Session[C.SESSION.UserInfo];
             db.DeleteAddress(idAddress);
             return RedirectToAction("AddressDetails", "User");
         }
