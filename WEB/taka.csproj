@@ -138,22 +138,16 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\DatabaseInteractive\TakaDB.cs" />
-    <Compile Include="Models\Enitities\Address.cs" />
-    <Compile Include="Models\Enitities\Author.cs" />
-    <Compile Include="Models\Enitities\Book.cs" />
-    <Compile Include="Models\Enitities\Cart.cs" />
-    <Compile Include="Models\Enitities\Category.cs" />
-    <Compile Include="Models\Enitities\Image.cs" />
-    <Compile Include="Models\Enitities\Language.cs" />
-    <Compile Include="Models\Enitities\Order.cs" />
-    <Compile Include="Models\Enitities\OrderDetail.cs" />
-    <Compile Include="Models\Enitities\Publisher.cs" />
-    <Compile Include="Models\Enitities\Rate.cs" />
-    <Compile Include="Models\Enitities\RatingItem.cs" />
-    <Compile Include="Models\Enitities\SuggestBook.cs" />
+    <Compile Include="Models\Enitities\ADDRESS.cs" />
+    <Compile Include="Models\Enitities\CART.cs" />
+    <Compile Include="Models\Enitities\CATEGORY.cs" />
+    <Compile Include="Models\Enitities\IMAGE.cs" />
+    <Compile Include="Models\Enitities\ORDER.cs" />
+    <Compile Include="Models\Enitities\ORDER_DETAIL.cs" />
+    <Compile Include="Models\Enitities\RATE.cs" />
     <Compile Include="Models\Enitities\TakaDBContext.cs" />
-    <Compile Include="Models\Enitities\Type.cs" />
-    <Compile Include="Models\Enitities\User.cs" />
+    <Compile Include="Models\Enitities\TEA.cs" />
+    <Compile Include="Models\Enitities\USER.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Utils\C.cs" />
     <Compile Include="Utils\HelperFunctions.cs" />
