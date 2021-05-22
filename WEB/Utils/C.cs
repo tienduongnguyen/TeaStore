@@ -26,6 +26,6 @@ namespace taka.Utils
             public static string HIGHEST_PRICE = "Giá cao nhất";
             public static string LOWEST_PRICE = "Giá thấp nhất";
         }
-        public static int ID_ADMIN = 4;
+        public static int ID_ADMIN = 1;
     }
 }
