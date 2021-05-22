@@ -16,7 +16,7 @@ namespace taka.Controllers
 
         TakaDB dB = new TakaDB();
         // GET: Admin
-        public ActionResult Book(int page = 1, string text = "", int cate = 0, int sort = 0, int pageSize = 16, int priceFrom = 0, int priceTo = 0)
+        public ActionResult Tea(int page = 1, string text = "", int cate = 0, int sort = 0, int pageSize = 16, int priceFrom = 0, int priceTo = 0)
         {
             ViewBag.ListCate = dB.GetCategories();
             ViewBag.Cate = cate;
@@ -89,7 +89,7 @@ namespace taka.Controllers
 
 
         [HttpPost]
-        public ActionResult EditBook(int ID,
+        public ActionResult EditTea(int ID,
              IEnumerable<HttpPostedFileBase> Images,
              IEnumerable<int> images_delete,
             string Title,
@@ -120,12 +120,12 @@ namespace taka.Controllers
             catch (Exception)
             {
             }
-            return RedirectToAction("Book", "Admin");
+            return RedirectToAction("Tea", "Admin");
         }
 
 
         [HttpPost]
-        public ActionResult AddBook(
+        public ActionResult AddTea(
             IEnumerable<HttpPostedFileBase> Images,
             string Title,
             int Price,

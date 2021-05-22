@@ -1,6 +1,6 @@
 ﻿@{
     Layout = "~/Views/Admin/Shared/_Layout.cshtml";
-    List<taka.Models.Enitities.User> listUser = (List<taka.Models.Enitities.User>)ViewBag.list;
+    List<taka.Models.Enitities.USER> listUser = (List<taka.Models.Enitities.USER>)ViewBag.list;
 }
 
 <div class="row">
@@ -13,10 +13,10 @@
                 <tbody id="body_user">
                     @foreach (var user in listUser)
                     {
-                        <tr style="cursor:pointer" title="@user.KeySearch" onclick="fillUser('@user.Phone', '@user.Email', '@user.Fullname', '@user.Gender', '@user.Birthday')">
-                            <th>@user.Phone</th>
-                            <td>@user.Fullname</td>
-                            @if (user.is_ban != 1)
+                        <tr style="cursor:pointer" title="@user.KEYSEARCH" onclick="fillUser('@user.PHONE', '@user.EMAIL', '@user.FULLNAME', '@user.GENDER', '@user.BIRTHDAY')">
+                            <th>@user.PHONE</th>
+                            <td>@user.FULLNAME</td>
+                            @if (user.isBAN != 1)
                             {
                                 <td><a href="/Admin/BanUser?id=@user.ID&ban=1"><img src="~/Content/Icon/ic_lock.png" style="width:25px" /></a></td>
                             }

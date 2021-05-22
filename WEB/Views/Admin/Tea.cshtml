@@ -1,5 +1,5 @@
 ﻿@{
-    IEnumerable<taka.Models.Enitities.Book> Model = ViewBag.list;
+    IEnumerable<taka.Models.Enitities.TEA> Model = ViewBag.list;
     Layout = "~/Views/Admin/Shared/_Layout.cshtml";
 }
 
@@ -7,7 +7,7 @@
 
 <nav class="nav float-right p-3">
     <a href="/Admin/Add" class="btn btn-light" style="background-color:#ee4d2d;color:white">
-        <b>Thêm đầu sách</b>
+        <b>Thêm trà</b>
     </a>
 </nav>
 
@@ -46,7 +46,7 @@
                 if (cate.ID == ViewBag.cate)
                 {
                     <div class="list-group-item" style="border:0px;padding:10px">
-                        <b style="color:#ee4d2d">@cate.Name</b>
+                        <b style="color:#ee4d2d">@cate.NAME</b>
                         <a href="#" onclick="getUrl({ page: 1, cate:0 })" class="btn">
                             <ion-icon style="font-size:25px;text-align:center" name="close-circle-outline"></ion-icon>
                         </a>
@@ -54,47 +54,7 @@
                 }
                 else
                 {
-                    <a class="list-group-item" style="border:0px;padding:10px;color:dimgray" href="#" onclick="getUrl({ cate: '@cate.ID', page:1 })">@cate.Name</a>
-                }
-            }
-            <br />
-            <h5>
-                HÌNH THỨC
-            </h5>
-            @foreach (var e in ViewBag.ListType)
-            {
-                if (e.ID == ViewBag.Type)
-                {
-                    <div class="list-group-item" style="border:0px;padding:10px">
-                        <b style="color:#ee4d2d">@e.Name</b>
-                        <a href="#" onclick="getUrl({ page: 1, type:0 })" class="btn">
-                            <ion-icon style="font-size:25px;text-align:center" name="close-circle-outline"></ion-icon>
-                        </a>
-                    </div>
-                }
-                else
-                {
-                    <a class="list-group-item" style="border:0px;padding:10px;color:dimgray" href="#" onclick="getUrl({  page: 1, type:@e.ID })">@e.Name</a>
-                }
-            }
-            <br />
-            <h5>
-                Ngôn ngữ
-            </h5>
-            @foreach (var e in ViewBag.ListLanguage)
-            {
-                if (e.ID == ViewBag.Language)
-                {
-                    <div class="list-group-item" style="border:0px;padding:10px">
-                        <b style="color:#ee4d2d">@e.Name</b>
-                        <a href="#" onclick="getUrl({ page: 1, language: 0 })" class="btn">
-                            <ion-icon style="font-size:25px;text-align:center" name="close-circle-outline"></ion-icon>
-                        </a>
-                    </div>
-                }
-                else
-                {
-                    <a class="list-group-item" style="border:0px;padding:10px;color:dimgray" href="#" onclick="getUrl({ page: 1, language: @e.ID})">@e.Name</a>
+                    <a class="list-group-item" style="border:0px;padding:10px;color:dimgray" href="#" onclick="getUrl({ cate: '@cate.ID', page:1 })">@cate.NAME</a>
                 }
             }
         </div>
@@ -176,28 +136,22 @@
                 <div id="root_@item.ID" style="margin:10px; flex:1;flex-direction:row;display:flex; border: 1px solid white;padding:10px;text-decoration:none"
                      onmousemove="onMoveMouseItem('root_@item.ID')" onmouseout="onMoveOutMouseOfItem('root_@item.ID')">
                     <a href="/Admin/Edit?id=@item.ID">
-                        <img src="@item.Images.First().Url" style="width:100px;height:100px ;object-fit:contain" />
+                        <img src="@item.IMAGEs.First().URL" style="width:100px;height:100px ;object-fit:contain" />
                     </a>
                     <b class="title-book">
-                        @item.Title
+                        @item.TITLE
                     </b>
                     <div class="header-book">
-                        @item.Date
-                    </div>
-                    <div class="header-book">
-                        @item.Page
-                    </div>
-                    <div class="header-book">
-                        @item.Quantity
+                        @item.AMOUNT
                     </div>
                     <i class="price-book">
-                        @String.Format(new System.Globalization.CultureInfo("vi-VN"), "{0:N0}", item.Price) đ
+                        @String.Format(new System.Globalization.CultureInfo("vi-VN"), "{0:N0}", item.PRICE) đ
                     </i>
                     <div class="header-book" style="flex-direction:row">
                         <a href="/Admin/Edit?id=@item.ID">
                             <ion-icon style="font-size:25px" name="create-outline"></ion-icon>
                         </a>
-                        <a href="#" onclick="onClickDeleteBook('@item.ID', '@item.Title')">
+                        <a href="#" onclick="onClickDeleteBook('@item.ID', '@item.TITLE')">
                             <ion-icon style="font-size:25px;margin-left:20px" name="trash-outline"></ion-icon>
                         </a>
                     </div>
@@ -264,8 +218,8 @@
     }
 
     let onClickDeleteBook = (id, title) => {
-        $('#delete-book-title').text(title)
-        $('#delete-book-id').val(id)
+        $('#delete-tea-title').text(title)
+        $('#delete-tea-id').val(id)
         $('#modalDelete').modal('show');
     }
 

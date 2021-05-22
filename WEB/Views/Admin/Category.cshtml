@@ -1,5 +1,5 @@
 ﻿@{
-    List<taka.Models.Enitities.Category> listCategory = (List<taka.Models.Enitities.Category>)ViewBag.list;
+    List<taka.Models.Enitities.CATEGORY> listCategory = (List<taka.Models.Enitities.CATEGORY>)ViewBag.list;
     Layout = "~/Views/Admin/Shared/_Layout.cshtml";
 }
 
@@ -13,8 +13,8 @@
                 <tbody id="body_category">
                     @foreach (var cate in listCategory)
                     {
-                        <tr style="cursor:pointer" title="@cate.KeySearch" onclick="fillCate('@cate.ID', '@cate.Name')">
-                            <th>@cate.Name</th>
+                        <tr style="cursor:pointer" title="@cate.KEYSEARCH" onclick="fillCate('@cate.ID', '@cate.NAME')">
+                            <th>@cate.NAME</th>
                             <td><a href="/Admin/RemoveCategory/@cate.ID"><img src="~/Content/Icon/ic_delete.png" style="width:25px" /></a></td>
                         </tr>
                     }
