@@ -18,11 +18,11 @@ namespace taka.Controllers
         public ActionResult List(int page = 1, string text = "", int cate = 0, int sort = 0, int pageSize = 16, int type = 0, int language = 0, int priceFrom = 0, int priceTo = 0)
         {
             ViewBag.ListCate = dB.GetCategories();
-            ViewBag.ListType = dB.GetTypes();
-            ViewBag.ListLanguage = dB.GetLanguages();
+            //ViewBag.ListType = dB.GetTypes();
+            //ViewBag.ListLanguage = dB.GetLanguages();
             ViewBag.Cate = cate;
             ViewBag.Sort = sort;
-            ViewBag.Type = type;
+            //ViewBag.Type = type;
             if (priceFrom > priceTo)
                 priceTo = 0;
             ViewBag.PriceFrom = priceFrom;
@@ -49,11 +49,11 @@ namespace taka.Controllers
             {
                 ViewBag.PageSize = pageSize;
             }
-            ListBook listBook = dB.GetListBook(page, text, cate, sort, pageSize, type, language, priceFrom, priceTo);
-            ViewBag.ListPage = HelperFunctions.getNumPage(page, listBook.pages);
-            ViewBag.maxPage = listBook.pages;
+            ListTea listTea = dB.GetListTea(page, text, cate, sort, pageSize, type, language, priceFrom, priceTo);
+            ViewBag.ListPage = HelperFunctions.getNumPage(page, listTea.pages);
+            ViewBag.maxPage = listTea.pages;
             ViewBag.TextSearch = text;
-            return View(listBook.books);
+            return View(listTea.TEAs);
         }
 
         public ActionResult Index()
@@ -65,10 +65,10 @@ namespace taka.Controllers
         [HttpPost]
         public ActionResult Login(string phone, string password, string returnUrl)
         {
-            User user = dB.Login(phone, password);
+            USER user = dB.Login(phone, password);
             if (user != null)
             {
-                if (user.is_ban == 1)
+                if (user.isBAN == 1)
                 {
                     TempData[C.TEMPDATA.Message] = "Tài khoản của bạn đã bị khoá, vùi lòng liên hiện để biết thêm thông tin";
                     return RedirectToAction("Login", "Home", new { returnUrl, phone });
@@ -94,8 +94,8 @@ namespace taka.Controllers
         [HttpPost]
         public ActionResult LoginWithGoogle(string googleId, string fullname, string email, string returnUrl = "")
         {
-            User user = dB.LoginWithGoogle(googleId, fullname, email);
-            if (user.is_ban == 1)
+            USER user = dB.LoginWithGoogle(googleId, fullname, email);
+            if (user.isBAN == 1)
             {
                 TempData[C.TEMPDATA.Message] = "Tài khoản của bạn đã bị khoá, vùi lòng liên hiện để biết thêm thông tin";
                 return Json(new
@@ -118,7 +118,7 @@ namespace taka.Controllers
         [HttpPost]
         public ActionResult Register(string phone, string password, string email, string gender, string fullname, string birthday, string returnUrl, string tab)
         {
-            User user = dB.Register(phone, password, email, gender, fullname, birthday);
+            USER user = dB.Register(phone, password, email, gender, fullname, birthday);
 
             if (user != null)
             {
