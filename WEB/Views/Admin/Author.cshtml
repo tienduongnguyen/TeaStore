@@ -1,0 +1,61 @@
+﻿@{
+    List<taka.Models.Enitities.Author> listAuthors = (List<taka.Models.Enitities.Author>)ViewBag.list;
+    Layout = "~/Views/Admin/Shared/_Layout.cshtml";
+}
+
+<div class="row">
+    <div class="col-6">
+        <h4>Danh sách</h4>
+        <hr />
+        <input type="text" class="form-control" placeholder="Tìm tác giả" id="search_author" oninput="onInputSearch('body_author','search_author')" />
+        <div style="overflow-y:auto;height:800px">
+            <table class="table">
+                <tbody id="body_author">
+                    @foreach (var author in listAuthors)
+                    {
+                        <tr style="cursor:pointer" title="@author.KeySearch" onclick="fillAuthor('@author.ID', '@author.Name')">
+                            <th>@author.Name</th>
+                            <td><a href="/Admin/RemoveAuthor/@author.ID"><img src="~/Content/Icon/ic_delete.png" style="width:25px" /></a></td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="col-6">
+        <h4>Cập nhật</h4>
+        <form action="/Admin/UpdateAuthor" method="post">
+            <label>Mã tác giả</label>
+            <div class="form-group">
+                <input name="id" id="author_id_edit" type="text" class="form-control" placeholder="Mã" value="" readonly />
+            </div>
+            <label>Tên tác giả</label>
+            <div class="form-group">
+                <input name="name" id="author_name_edit" type="text" class="form-control" placeholder="Tác giả" value="" />
+            </div>
+            <input type="submit" class="btn btn-light" id="author_button_edit" style="background-color:#ee4d2d;color:white" value="Cập nhật thông tin" disabled />
+        </form>
+        <hr />
+        <br />
+        <h4>Thêm mới</h4>
+        <form action="/Admin/AddAuthor" method="post">
+            <label>Tên tác giả</label>
+            <div class="form-group">
+                <input name="name" id="author_name_add" type="text" class="form-control" placeholder="Tác giả" value="" oninput="onInputAddAuthor()" />
+            </div>
+            <input type="submit" class="btn btn-light" id="author_button_add" style="background-color:#ee4d2d;color:white" value="Thêm" disabled />
+        </form>
+    </div>
+</div>
+<script>
+    let fillAuthor = (id, name) => {
+        $("#author_id_edit").val(id)
+        $("#author_name_edit").val(name)
+        $("#author_button_edit").removeAttr("disabled")
+    }
+
+    let onInputAddAuthor = () => {
+        if ($('#author_name_add').val().length > 0) $('#author_button_add').removeAttr('disabled')
+        else $('#author_button_add').attr('disabled', 'disabled')
+    }
+</script>

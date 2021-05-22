@@ -1,0 +1,61 @@
+﻿@{
+    Layout = "~/Views/Admin/Shared/_Layout.cshtml";
+    List<taka.Models.Enitities.Publisher> listPublishers = (List<taka.Models.Enitities.Publisher>)ViewBag.list;
+}
+
+<div class="row">
+    <div class="col-6">
+        <h4>Danh sách</h4>
+        <hr />
+        <input type="text" class="form-control" placeholder="Tìm kiếm nhà xuất bản" oninput="onInputSearch('body_publisher','input_publisher')" id="input_publisher" />
+        <div style="overflow-y:auto;height:800px">
+            <table class="table">
+                <tbody id="body_publisher">
+                    @foreach (var pub in listPublishers)
+                    {
+                        <tr style="cursor:pointer" title="@pub.KeySearch" onclick="fillPublish('@pub.ID', '@pub.Name')">
+                            <th>@pub.Name</th>
+                            <td><a href="/Admin/RemovePublisher/@pub.ID"><img src="~/Content/Icon/ic_delete.png" style="width:25px" /></a></td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="col-6">
+        <h4>Cập nhật</h4>
+        <form action="/Admin/UpdatePublisher" method="post">
+            <label>Mã nhà xuất bản</label>
+            <div class="form-group">
+                <input name="id" id="publisher_id_edit" type="text" class="form-control" placeholder="" value="" readonly />
+            </div>
+            <label>Tên nhà xuất bản</label>
+            <div class="form-group">
+                <input name="name" id="publisher_name_edit" type="text" class="form-control" placeholder="" value="" />
+            </div>
+            <input type="submit" class="btn btn-light" id="publisher_button_edit" style="background-color:#ee4d2d;color:white" value="Cập nhật thông tin" disabled />
+        </form>
+        <hr />
+        <br />
+        <h4>Thêm mới</h4>
+        <form action="/Admin/AddPublisher" method="post">
+            <label>Tên nhà xuất bản</label>
+            <div class="form-group">
+                <input name="name" id="publisher_name_add" type="text" class="form-control" placeholder="Tên nhà xuất bản" value="" oninput="onInputAddPublish()" />
+            </div>
+            <input type="submit" class="btn btn-light" id="publisher_button_add" style="background-color:#ee4d2d;color:white" value="Thêm" disabled />
+        </form>
+    </div>
+</div>
+<script>
+    let fillPublish = (id, name) => {
+        $("#publisher_id_edit").val(id)
+        $("#publisher_name_edit").val(name)
+        $("#publisher_button_edit").removeAttr("disabled")
+    }
+
+    let onInputAddPublish = () => {
+        if ($('#publisher_name_add').val().length > 0) $('#publisher_button_add').removeAttr('disabled')
+        else $('#publisher_button_add').attr('disabled', 'disabled')
+    }
+</script>

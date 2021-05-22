@@ -1,0 +1,61 @@
+﻿@{
+    Layout = "~/Views/Admin/Shared/_Layout.cshtml";
+    List<taka.Models.Enitities.Language> listLanguages = (List<taka.Models.Enitities.Language>)ViewBag.list;
+}
+
+<div class="row">
+    <div class="col-6">
+        <h4>Danh sách</h4>
+        <hr />
+        <input type="text" class="form-control" placeholder="Tìm kiếm" id="input_language" oninput="onInputSearch('body_language','input_language')" />
+        <div style="overflow-y:auto;height:800px">
+            <table class="table">
+                <tbody id="body_language">
+                    @foreach (var lang in listLanguages)
+                    {
+                        <tr style="cursor:pointer" title="@lang.KeySearch" onclick="fillLang('@lang.ID', '@lang.Name')">
+                            <th>@lang.Name</th>
+                            <td><a href="/Admin/RemoveLanguage/@lang.ID"><img src="~/Content/Icon/ic_delete.png" style="width:25px" /></a></td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="col-6">
+        <h4>Cập nhật</h4>
+        <form action="/Admin/UpdateLanguage" method="post">
+            <label>Mã</label>
+            <div class="form-group">
+                <input name="id" id="language_id_edit" type="text" class="form-control" placeholder="" value="" readonly />
+            </div>
+            <label>Ngôn ngữ</label>
+            <div class="form-group">
+                <input name="name" id="language_name_edit" type="text" class="form-control" placeholder="" value="" />
+            </div>
+            <input type="submit" class="btn btn-light" id="language_button_edit" style="background-color:#ee4d2d;color:white" value="Cập nhật thông tin" disabled />
+        </form>
+        <hr />
+        <br />
+        <h4>Thêm mới</h4>
+        <form action="/Admin/AddLanguage" method="post">
+            <label>Ngôn ngữ</label>
+            <div class="form-group">
+                <input name="name" id="language_name_add" type="text" class="form-control" placeholder="Ngôn ngữ" value="" oninput="onInputAddLang()" />
+            </div>
+            <input type="submit" class="btn btn-light" id="language_button_add" style="background-color:#ee4d2d;color:white" value="Thêm" disabled />
+        </form>
+    </div>
+</div>
+<script>
+    let fillLang = (id, name) => {
+        $("#language_id_edit").val(id)
+        $("#language_name_edit").val(name)
+        $("#language_button_edit").removeAttr("disabled")
+    }
+
+    let onInputAddLang = () => {
+        if ($('#language_name_add').val().length > 0) $('#language_button_add').removeAttr('disabled')
+        else $('#language_button_add').attr('disabled', 'disabled')
+    }
+</script>
