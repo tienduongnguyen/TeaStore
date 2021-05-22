@@ -1,4 +1,4 @@
-﻿@model taka.Models.Enitities.User
+﻿@model taka.Models.Enitities.USER
 
 @{
     ViewBag.Title = "Takasa";
@@ -13,25 +13,25 @@
         <table class="table" style="vertical-align:auto">
             <tr>
                 <th>Họ Tên</th>
-                <td>@Model.Fullname</td>
+                <td>@Model.FULLNAME</td>
             </tr>
             <tr>
                 <th>Ngày Sinh</th>
                 <td>
-                    @DateTime.Parse(@Model.Birthday).ToString("dd/MM/yyyy")
+                    @DateTime.Parse(@Model.BIRTHDAY).ToString("dd/MM/yyyy")
                 </td>
             </tr>
             <tr>
                 <th>Email</th>
-                <td>@Model.Email</td>
+                <td>@Model.EMAIL</td>
             </tr>
             <tr>
                 <th>Số Điện Thoại</th>
-                <td>@Model.Phone</td>
+                <td>@Model.PHONE</td>
             </tr>
             <tr>
                 <th>Giới Tính</th>
-                <td>@Model.Gender</td>
+                <td>@Model.GENDER</td>
             </tr>
         </table>
     </div>

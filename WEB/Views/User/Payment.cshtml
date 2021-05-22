@@ -2,7 +2,7 @@
 
 @{
     ViewBag.Title = "Takasa";
-    List<taka.Models.Enitities.Address> listAddress = ViewBag.addresses;
+    List<taka.Models.Enitities.ADDRESS> listAddress = ViewBag.addresses;
     ViewBag.MessageForValid = "Vui lòng nhập đủ thông tin";
 }
 <header>
@@ -37,7 +37,7 @@
                             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                                 @foreach (var item in listAddress)
                                 {
-                                    <a class="btn dropdown-item address_dropdown btn-light" id="address_@item.ID" onclick="changeAddress('@item.Address1'); changePhone('@item.Phone'); changeName('@item.Name'); changeIDAdress('@item.ID');">@item.Address1</a>
+                                    <a class="btn dropdown-item address_dropdown btn-light" id="address_@item.ID" onclick="changeAddress('@item.ADDRESS1'); changePhone('@item.PHONE'); changeName('@item.NAME'); changeIDAdress('@item.ID');">@item.ADDRESS1</a>
                                 }
                                 <a class="dropdown-item btn btn-light address_other" id="" onclick="changeAddress('Khác'); changeIDAdress('-1');">Khác</a>
                             </div>
@@ -73,7 +73,7 @@
                     <div class="d-flex flex-wrap card md-form md-outline mb-0 mb-lg-4">
                         <div class="dropdown card-body">
                             <input class="btn btn-light dropdown-toggle shipper" type="button" id="shipperDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" />
-                            <input class="shipper" id="shippingComp" name="shipper" hidden/>
+                            <input class="shipper" id="shippingComp" name="shipper" hidden />
                             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                                 <a class="dropdown-item btn btn-light" onclick="changeShipper('shipper1')">Giao hàng nhanh</a>
                                 <a class="dropdown-item btn btn-light" onclick="changeShipper('shipper2')">Giao hàng tiết kiệm</a>
@@ -108,10 +108,10 @@
                         {
                             <li class="list-group-item d-flex justify-content-between lh-condensed">
                                 <div>
-                                    <h6 class="my-0">@item.bookName</h6>
-                                    <small class="text-muted">Số lượng: @item.quantity</small>
+                                    <h6 class="my-0">@item.teaName</h6>
+                                    <small class="text-muted">Số lượng: @item.amount</small>
                                 </div>
-                                <span class="text-muted">@String.Format(new System.Globalization.CultureInfo("vi-VN"), "{0:N0}", item.price * item.quantity) VND</span>
+                                <span class="text-muted">@String.Format(new System.Globalization.CultureInfo("vi-VN"), "{0:N0}", item.price * item.amount) VND</span>
                             </li>
                         }
 
@@ -125,9 +125,9 @@
                         <li class="list-group-item d-flex justify-content-between">
                             <strong style="color:#ee4d2d;">Tổng tiền</strong>
 
-                            
+
                             <input type="text" style="color:#ee4d2d; border:none; background-color:white;" class="totalSum text-right font-weight-bold" disabled="disabled" />
-                            <input class="totalPrice" name="totalPrice" hidden/>
+                            <input class="totalPrice" name="totalPrice" hidden />
                         </li>
                     </ul>
                     <button type="submit" style="background-color:#ee4d2d;color:white" class="btn btn-light btn-block">Mua ngay</button>
@@ -155,7 +155,7 @@
             @item.price
         </div>
         <div hidden class="quantity">
-            @item.quantity
+            @item.amount
         </div>
     }
 
@@ -214,7 +214,7 @@
             $('.input-address,.input-name,.input-phone').val('')
             $('.input-address,.input-phone,.input-name').attr('required', 'required');
             $('.input-address,.input-phone,.input-name').attr('oninvalid', "this.setCustomValidity('Vui lòng nhập đủ thông tin!')");
-            $('.input-address,.input-phone,.input-name').attr('oninput', "setCustomValidity('')");
+            $('.input-address,.input-phone,.input-name').attr('oninput', "PHONEetCustomValidity('')");
         }
         else {
             $('.other-contact-info').hide('fast');

@@ -1,4 +1,4 @@
-﻿@model taka.Models.Enitities.User
+﻿@model taka.Models.Enitities.USER
 
 @{
     ViewBag.Title = "Takasa";
@@ -15,15 +15,15 @@
             <table class="table" style="vertical-align:auto">
                 <tr>
                     <th>Họ Và Tên</th>
-                    <td><input type="text" name="fullname" class="form-control" id="name" placeholder="Họ Và Tên" value="@Model.Fullname"></td>
+                    <td><input type="text" name="fullname" class="form-control" id="name" placeholder="Họ Và Tên" value="@Model.FULLNAME"></td>
                 </tr>
                 <tr>
                     <th>Ngày Sinh</th>
-                    <td><input name="birthday" type="date" class="form-control" placeholder="Ngày sinh " value="@Model.Birthday" /></td>
+                    <td><input name="birthday" type="date" class="form-control" placeholder="Ngày sinh " value="@Model.BIRTHDAY" /></td>
                 </tr>
                 <tr>
                     <th>Email</th>
-                    <td><input name="email" type="email" class="form-control" placeholder="Email " value="@Model.Email" /></td>
+                    <td><input name="email" type="email" class="form-control" placeholder="Email " value="@Model.EMAIL" /></td>
                 </tr>
                 <tr>
                     <th>Giới Tính</th>
@@ -31,7 +31,7 @@
                         <select name="gender" class="form-control">
                             @foreach (var item in genders)
                             {
-                                if (item.Equals(Model.Gender))
+                                if (item.Equals(Model.GENDER))
                                 {
                                     <option value="@item" selected>@item</option>
                                 }

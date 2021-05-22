@@ -1,6 +1,6 @@
 ﻿@{
     Layout = "~/Views/Shared/_Layout.cshtml";
-    taka.Models.Enitities.User userInfo = (taka.Models.Enitities.User)Session[taka.Utils.C.SESSION.UserInfo];
+    taka.Models.Enitities.USER userInfo = (taka.Models.Enitities.USER)Session[taka.Utils.C.SESSION.UserInfo];
 }
 <!DOCTYPE html>
 
@@ -27,7 +27,7 @@
                     </div>
                 </a>
                 <div class="user-page-brief__right">
-                    <div class="user-page-brief__username">@userInfo.Fullname</div>
+                    <div class="user-page-brief__username">@userInfo.FULLNAME</div>
                     <div>
                         <a class="user-page-brief__edit" href="@Url.Action("EditUser", "User")">
                             <svg width="12" height="12" viewBox="0 0 12 12" xmlns="http://www.w3.org/2000/svg" style="margin-right: 4px;">
