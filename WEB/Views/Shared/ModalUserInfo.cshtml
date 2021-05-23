@@ -1,5 +1,5 @@
 ﻿@{
-    taka.Models.Enitities.User userInfo = (taka.Models.Enitities.User)@Session[taka.Utils.C.SESSION.UserInfo];
+    taka.Models.Enitities.USER userInfo = (taka.Models.Enitities.USER)@Session[taka.Utils.C.SESSION.UserInfo];
 }
 @if (userInfo != null)
 {
@@ -16,23 +16,23 @@
                     <table class="table">
                         <tr>
                             <th>Họ Tên</th>
-                            <td>@userInfo.Fullname</td>
+                            <td>@userInfo.FULLNAME</td>
                         </tr>
                         <tr>
                             <th>Ngày sinh</th>
-                            <td>@DateTime.Parse(@userInfo.Birthday.ToString()).ToString("dd/MM/yyyy")</td>
+                            <td>@DateTime.Parse(@userInfo.BIRTHDAY.ToString()).ToString("dd/MM/yyyy")</td>
                         </tr>
                         <tr>
                             <th>Email</th>
-                            <td>@userInfo.Email</td>
+                            <td>@userInfo.EMAIL</td>
                         </tr>
                         <tr>
                             <th>Số điện thoại</th>
-                            <td>@userInfo.Phone</td>
+                            <td>@userInfo.PHONE</td>
                         </tr>
                         <tr>
                             <th>Giới tính</th>
-                            <td>@userInfo.Gender</td>
+                            <td>@userInfo.GENDER</td>
                         </tr>
                     </table>
                 </div>
