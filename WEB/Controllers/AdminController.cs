@@ -78,7 +78,7 @@ namespace taka.Controllers
             {
                 if (id == -1)
                     throw new Exception("Not found");
-                var item = dB.GetBookDetail(id);
+                var item = dB.GetTeaDetail(id);
                 return View(item);
             }
             catch (Exception)
@@ -104,7 +104,7 @@ namespace taka.Controllers
             string Weight,
             string Use)
         {
-            dB.EditBook(ID, images_delete, Images, Title, Price, idCategory, Amount, Description, Story, Ingredient, Function, Caffein, Weight, Use);
+            dB.EditTea(ID, images_delete, Images, Title, Price, idCategory, Amount, Description, Story, Ingredient, Function, Caffein, Weight, Use);
             return RedirectToAction("Edit", "Admin", new { id = ID });
         }
 

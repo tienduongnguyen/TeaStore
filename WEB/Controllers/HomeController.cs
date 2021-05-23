@@ -82,7 +82,7 @@ namespace taka.Controllers
                 return RedirectToAction("Login", "Home", new { returnUrl, phone });
             }
             if (user.ID.Equals(C.ID_ADMIN))
-                return RedirectToAction("Book", "Admin");
+                return RedirectToAction("Tea", "Admin");
 
             if (returnUrl.Equals(""))
                 return RedirectToAction("Index", "Home");
@@ -149,7 +149,7 @@ namespace taka.Controllers
             {
                 if (id == -1)
                     throw new Exception("Not found");
-                var item = dB.GetBookDetail(id);
+                var item = dB.GetTeaDetail(id);
                 return View(item);
             }
             catch (Exception)

@@ -39,7 +39,7 @@ namespace taka.Models.DatabaseInteractive
             takaDB = new TakaDBContext();
         }
 
-        public ListTea GetListTea(int page = 1, string text = "", int cate = 0, int sort = 0, int pageSize = 16, int type = 0, int language = 0, int priceFrom = 0, int priceTo = 0)
+        public ListTea GetListTea(int page = 1, string text = "", int cate = 0, int sort = 0, int pageSize = 10, int type = 0, int language = 0, int priceFrom = 0, int priceTo = 0)
         {
             var removeUnicode = HelperFunctions.RemoveUnicode(text);
             var listItem = takaDB.TEAs.Where(x => x.isHIDDEN != 1);
@@ -47,9 +47,9 @@ namespace taka.Models.DatabaseInteractive
             if (cate != 0)
                 listItem = listItem.Where(m => m.ID_CATEGORY == cate);
 
-            
 
-            
+
+
             if (priceTo > 0)
                 listItem = listItem.Where(m => (m.PRICE > priceFrom && m.PRICE < priceTo));
             else if (priceFrom > 0)
@@ -71,7 +71,7 @@ namespace taka.Models.DatabaseInteractive
                     break;
             }
 
-            int maxPage = listItem.Count() / pageSize + 1;
+            int maxPage = (int)Math.Ceiling((double)(listItem.Count() / pageSize));
             return new ListTea(maxPage, listItem.Skip((page - 1) * pageSize).Take(pageSize).ToList());
         }
 
@@ -82,9 +82,9 @@ namespace taka.Models.DatabaseInteractive
             List<ListTea> list = new List<ListTea>();
             foreach (var cate in GetCategories())
             {
-                ListTea listBook = new ListTea(0, listItem.Where(m => m.ID_CATEGORY == cate.ID).OrderBy(m => m.ID).Take(pageSize).ToList());
-                listBook.cate = cate;
-                list.Add(listBook);
+                ListTea listTea = new ListTea(0, listItem.Where(m => m.ID_CATEGORY == cate.ID).OrderBy(m => m.ID).Take(pageSize).ToList());
+                listTea.cate = cate;
+                list.Add(listTea);
             }
             return list;
         }
@@ -105,7 +105,7 @@ namespace taka.Models.DatabaseInteractive
             return takaDB.CATEGORies.Where(x => x.ID == id).First().NAME;
         }
 
-        public TEA GetBookDetail(int id)
+        public TEA GetTeaDetail(int id)
         {
             return takaDB.TEAs.Where(x => x.ID == id && x.isHIDDEN != 1).First();
         }
@@ -235,9 +235,9 @@ namespace taka.Models.DatabaseInteractive
             var listCarts = takaDB.CARTs.Where(x => x.ID_USER == idUser).ToList();
             return listCarts;
         }
-        public void DeleteCartItem(int idUser, int idBook)
+        public void DeleteCartItem(int idUser, int idTea)
         {
-            CART deleteItem = takaDB.CARTs.Where(x => x.ID_USER == idUser && x.ID_TEA == idBook).First();
+            CART deleteItem = takaDB.CARTs.Where(x => x.ID_USER == idUser && x.ID_TEA == idTea).First();
             takaDB.CARTs.Remove(deleteItem);
             takaDB.SaveChanges();
         }
@@ -323,7 +323,7 @@ namespace taka.Models.DatabaseInteractive
         }
 
 
-        public TEA EditBook(int ID,
+        public TEA EditTea(int ID,
             IEnumerable<int> images_delete,
             IEnumerable<HttpPostedFileBase> Images,
             string Title,

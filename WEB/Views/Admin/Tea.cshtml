@@ -111,22 +111,22 @@
 
             <div style="margin:10px; flex:1;flex-direction:row;display:flex; border: 1px solid white;padding:10px;text-decoration:none">
                 <div style="width:100px ;object-fit:contain"></div>
-                <b class="title-book">
+                <b class="title-tea">
                     Tên sách
                 </b>
-                <div class="header-book">
+                <div class="header-tea">
                     Ngày nhập
                 </div>
-                <div class="header-book">
+                <div class="header-tea">
                     Số trang
                 </div>
-                <div class="header-book">
+                <div class="header-tea">
                     Số lượng
                 </div>
-                <i class="price-book">
+                <i class="price-tea">
                     Giá
                 </i>
-                <div class="header-book">
+                <div class="header-tea">
                     Thao tác
                 </div>
             </div>
@@ -138,20 +138,20 @@
                     <a href="/Admin/Edit?id=@item.ID">
                         <img src="@item.IMAGEs.First().URL" style="width:100px;height:100px ;object-fit:contain" />
                     </a>
-                    <b class="title-book">
+                    <b class="title-tea">
                         @item.TITLE
                     </b>
-                    <div class="header-book">
+                    <div class="header-tea">
                         @item.AMOUNT
                     </div>
-                    <i class="price-book">
+                    <i class="price-tea">
                         @String.Format(new System.Globalization.CultureInfo("vi-VN"), "{0:N0}", item.PRICE) đ
                     </i>
-                    <div class="header-book" style="flex-direction:row">
+                    <div class="header-tea" style="flex-direction:row">
                         <a href="/Admin/Edit?id=@item.ID">
                             <ion-icon style="font-size:25px" name="create-outline"></ion-icon>
                         </a>
-                        <a href="#" onclick="onClickDeleteBook('@item.ID', '@item.TITLE')">
+                        <a href="#" onclick="onClickDeleteTea('@item.ID', '@item.TITLE')">
                             <ion-icon style="font-size:25px;margin-left:20px" name="trash-outline"></ion-icon>
                         </a>
                     </div>
@@ -217,7 +217,7 @@
         $('#' + id).css('border', '1px solid white')
     }
 
-    let onClickDeleteBook = (id, title) => {
+    let onClickDeleteTea = (id, title) => {
         $('#delete-tea-title').text(title)
         $('#delete-tea-id').val(id)
         $('#modalDelete').modal('show');

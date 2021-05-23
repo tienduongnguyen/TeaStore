@@ -1,5 +1,5 @@
 ﻿@{
-    taka.Models.Enitities.User userInfo = (taka.Models.Enitities.User)Session["UserInfo"];
+    taka.Models.Enitities.USER userInfo = (taka.Models.Enitities.USER)Session["UserInfo"];
 }
 
 <header style="background-color:#ee4d2d" role="banner">
@@ -15,7 +15,7 @@
             }
             @if (userInfo != null && userInfo.ID.Equals(taka.Utils.C.ID_ADMIN))
             {
-                <a href="/Admin/Book" class="btn btn-light m-1" style="color:#ee4d2d;">
+                <a href="/Admin/Tea" class="btn btn-light m-1" style="color:#ee4d2d;">
                     <b>Quản lý hệ thống</b>
                 </a>
                 <a href="/Home/Logout" class="btn btn-danger m-1" style="border:2px solid #ffffff">
