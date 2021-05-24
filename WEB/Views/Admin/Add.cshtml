@@ -11,7 +11,7 @@
 <form class="form-horizontal ml-2" method="post" action="/Admin/AddTea" enctype="multipart/form-data">
     <div class="row ml-2">
         <div onclick="goBack()" style="cursor:pointer">
-            <ion-icon style="font-size:25px;color:#ee4d2d;margin-top:5px;margin-right:10px" name="arrow-back-circle-outline"></ion-icon>
+            <ion-icon style="font-size:25px;color:#00B38F;margin-top:5px;margin-right:10px" name="arrow-back-circle-outline"></ion-icon>
         </div>
         <h4>Cập nhật thông tin</h4>
     </div>
@@ -64,7 +64,7 @@
                           rows="15"></textarea>
             </div>
 
-            <button type="submit" id="button_push" class="btn btn-light col p-3" style="background-color:#ee4d2d;color:white;">Thêm đầu sách</button>
+            <button type="submit" id="button_push" class="btn btn-light col p-3" style="background-color:#00B38F;color:white;">Thêm đầu sách</button>
 
         </div>
     </div>
@@ -90,7 +90,7 @@
     let oldId = -1
     const onFocusImg = (id) => {
         $("#imgVoTra_" + id).css('opacity', 0.3);
-        $("#imgVoTra_" + id).css('border', '2px solid #ee4d2d')
+        $("#imgVoTra_" + id).css('border', '2px solid #00B38F')
         $("#icDelete_" + id).removeAttr('hidden');
         oldId = id
     }

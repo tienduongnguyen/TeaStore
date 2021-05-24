@@ -29,7 +29,7 @@
         <h2>
             @Model.TITLE
         </h2>
-        <h1 style="color:#ee4d2d">
+        <h1 style="color:#00B38F">
             @String.Format(new System.Globalization.CultureInfo("vi-VN"), "{0:N0}", Model.PRICE)đ
         </h1>
         <hr />
@@ -64,13 +64,13 @@
         <div class="row col">
             @if (userInfo != null && userInfo.ID.Equals(taka.Utils.C.ID_ADMIN))
             {
-                <button type="button" onclick="updateTea()" onmousemove="onMouseMoveOutline('outline-btn')" onmouseout="onMouseOutOutline('outline-btn')" id="outline-btn" class="btn col p-3 m-3" style="background-color:white;color:#ee4d2d; border:3; border-color:#ee4d2d">Cập nhật thông tin</button>
-                <button type="button" onclick="showDeleteModal()" onmousemove="onMouseMoveColorFilled('colorfilled-btn')" onmouseout="onMouseOutColorFilled('colorfilled-btn')" id="colorfilled-btn" class="btn col p-3 m-3" style="background-color:#ee4d2d; color:white; border:3; border-color:#ee4d2d">Xoá</button>
+                <button type="button" onclick="updateTea()" onmousemove="onMouseMoveOutline('outline-btn')" onmouseout="onMouseOutOutline('outline-btn')" id="outline-btn" class="btn col p-3 m-3" style="background-color:white;color:#00B38F; border:3; border-color:#00B38F">Cập nhật thông tin</button>
+                <button type="button" onclick="showDeleteModal()" onmousemove="onMouseMoveColorFilled('colorfilled-btn')" onmouseout="onMouseOutColorFilled('colorfilled-btn')" id="colorfilled-btn" class="btn col p-3 m-3" style="background-color:#00B38F; color:white; border:3; border-color:#00B38F">Xoá</button>
             }
             else
             {
-                <button type="button" onclick="addToCart()" onmousemove="onMouseMoveOutline('outline-btn')" onmouseout="onMouseOutOutline('outline-btn')" id="outline-btn" class="btn col p-3 m-3" style="background-color:white;color:#ee4d2d; border:3; border-color:#ee4d2d">Thêm vào giỏ hàng</button>
-                <button type="button" onclick="buyNow()" onmousemove="onMouseMoveColorFilled('colorfilled-btn')" onmouseout="onMouseOutColorFilled('colorfilled-btn')" id="colorfilled-btn" class="btn col p-3 m-3" style="background-color:#ee4d2d; color:white; border:3; border-color:#ee4d2d">Mua ngay</button>
+                <button type="button" onclick="addToCart()" onmousemove="onMouseMoveOutline('outline-btn')" onmouseout="onMouseOutOutline('outline-btn')" id="outline-btn" class="btn col p-3 m-3" style="background-color:white;color:#00B38F; border:3; border-color:#00B38F">Thêm vào giỏ hàng</button>
+                <button type="button" onclick="buyNow()" onmousemove="onMouseMoveColorFilled('colorfilled-btn')" onmouseout="onMouseOutColorFilled('colorfilled-btn')" id="colorfilled-btn" class="btn col p-3 m-3" style="background-color:#00B38F; color:white; border:3; border-color:#00B38F">Mua ngay</button>
             }
         </div>
     </div>
@@ -169,7 +169,7 @@
         if (oldUrl != url)
             $("#main_image")[0].src = url;
         if (selectImgId != id) {
-            $('#' + id).css('border', '2px solid #ee4d2d')
+            $('#' + id).css('border', '2px solid #00B38F')
             selectImgId = id
         }
     }
@@ -186,8 +186,8 @@
     }
     const onMouseOutOutline = (id) => {
         $('#' + id).css('background-color', 'white')
-        $('#' + id).css('color', '#ee4d2d')
-        $('#' + id).css('border-color', '#ee4d2d')
+        $('#' + id).css('color', '#00B38F')
+        $('#' + id).css('border-color', '#00B38F')
 
     }
     const onMouseMoveColorFilled = (id) => {
@@ -195,8 +195,8 @@
         $('#' + id).css('border-color', '#c42708')
     }
     const onMouseOutColorFilled = (id) => {
-        $('#' + id).css('background-color', '#ee4d2d')
-        $('#' + id).css('border-color', '#ee4d2d')
+        $('#' + id).css('background-color', '#00B38F')
+        $('#' + id).css('border-color', '#00B38F')
 
     }
 

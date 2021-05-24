@@ -2,20 +2,20 @@
     taka.Models.Enitities.USER userInfo = (taka.Models.Enitities.USER)Session["UserInfo"];
 }
 
-<header style="background-color:#ee4d2d" role="banner">
-    <img src="https://cdn0.fahasa.com/media/wysiwyg/Thang-05-2021/BigSale1_header.png" class="" style="width:100%;cursor:pointer" onclick="window.location.href = '/Home'" />
+<header style="background-color:#00B38F" role="banner">
+    
 
     <div class="container">
         <nav class="nav float-right">
             @if (userInfo == null)
             {
-                <button type="button" class="btn btn-light m-1" onclick="goToLoginPage()" style="color:#ee4d2d;">
+                <button type="button" class="btn btn-light m-1" onclick="goToLoginPage()" style="color:#00B38F;">
                     <b>Đăng nhập</b>
                 </button>
             }
             @if (userInfo != null && userInfo.ID.Equals(taka.Utils.C.ID_ADMIN))
             {
-                <a href="/Admin/Tea" class="btn btn-light m-1" style="color:#ee4d2d;">
+                <a href="/Admin/Tea" class="btn btn-light m-1" style="color:#00B38F;">
                     <b>Quản lý hệ thống</b>
                 </a>
                 <a href="/Home/Logout" class="btn btn-danger m-1" style="border:2px solid #ffffff">
@@ -25,12 +25,12 @@
             @if (userInfo != null && !userInfo.ID.Equals(taka.Utils.C.ID_ADMIN))
             {
                 <a href="/User/ShoppingCart" style="position:relative">
-                    <ion-icon class="btn btn-light m-1" style="height:25px; margin-top:10px; color:#ee4d2d" name="cart-outline"></ion-icon>
-                    <b style="position:absolute;top:0%;right:0%;background-color:white;border-radius:30px;width:20px;height:20px;text-align:center;line-height:15px;border:1px solid #ee4d2d;color:#ee4d2d">
+                    <ion-icon class="btn btn-light m-1" style="height:25px; margin-top:10px; color:#00B38F" name="cart-outline"></ion-icon>
+                    <b style="position:absolute;top:0%;right:0%;background-color:white;border-radius:30px;width:20px;height:20px;text-align:center;line-height:15px;border:1px solid #00B38F;color:#00B38F">
                         @Session[taka.Utils.C.SESSION.Cart]
                     </b>
                 </a>
-                <button type="button" class="btn btn-light m-1" data-toggle="modal" data-target="#modalUser" style="color:#ee4d2d;">
+                <button type="button" class="btn btn-light m-1" data-toggle="modal" data-target="#modalUser" style="color:#00B38F;">
                     <b>Xin chào @userInfo.FULLNAME</b>
                 </button>
             }
@@ -41,8 +41,8 @@
             <img style="width:100%;min-height:40px;max-height:40px;object-fit:contain" src="~/Content/Icon/ic_icon.png" />
         </a>
         <div class="col-9 input-group">
-            <input name="text" type="text" class="form-control" placeholder="Đắc nhân tâm" value="@ViewBag.TextSearch" />
-            <button class="btn btn-solid-primary btn-light" style="color:white;background-color:#ee4d2d;" type="submit">
+            <input name="text" type="text" class="form-control" placeholder="Trà Assam" value="@ViewBag.TextSearch" />
+            <button class="btn btn-solid-primary btn-light" style="color:white;background-color:#00B38F;" type="submit">
                 <ion-icon style="font-size:15px" name="search"></ion-icon>
             </button>
         </div>
