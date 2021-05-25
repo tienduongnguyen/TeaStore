@@ -7,6 +7,7 @@
     <style>
         .nav button {
             color: white;
+            background-color: transparent;
             z-index: 49;
             font-size: 1rem;
             border-width: 2px;
@@ -23,29 +24,29 @@
         <nav class="nav float-right" style="margin-top:15px;">
             @if (userInfo == null)
             {
-                <button type="button" class="btn btn-outline-light m-1" onclick="goToLoginPage()">
+                <button type="button" class="btn btn-light m-1" onclick="goToLoginPage()">
                     Đăng nhập
                 </button>
             }
             @if (userInfo != null && userInfo.ID.Equals(taka.Utils.C.ID_ADMIN))
             {
-                <a href="/Admin/Tea" class="btn btn-light m-1" style="color:#00B38F;">
+                <a href="/Admin/Tea" class="btn btn-light m-1" style="color:#00B38F; z-index: 49;">
                     <b>Quản lý hệ thống</b>
                 </a>
-                <a href="/Home/Logout" class="btn btn-danger m-1" style="border:2px solid #ffffff">
+                <a href="/Home/Logout" class="btn btn-danger m-1" style="border:2px solid #ffffff; z-index: 49;">
                     <b>Đăng xuất</b>
                 </a>
             }
             @if (userInfo != null && !userInfo.ID.Equals(taka.Utils.C.ID_ADMIN))
             {
-                <a href="/User/ShoppingCart" style="position:relative">
-                    <ion-icon class="btn btn-light m-1" style="height:25px; margin-top:10px; color:#00B38F" name="cart-outline"></ion-icon>
-                    <b style="position:absolute;top:0%;right:0%;background-color:white;border-radius:30px;width:20px;height:20px;text-align:center;line-height:15px;border:1px solid #00B38F;color:#00B38F">
+                <a href="/User/ShoppingCart" style="position:relative; z-index: 49;">
+                    <ion-icon class="btn btn-light m-1" style="height:25px; margin-top:10px; color:white; background-color:transparent; border: 2px solid white;" name="cart-outline"></ion-icon>
+                    <b style="position:absolute;top:0%;right:0%;background-color:white;border-radius:30px;width:20px;height:20px;text-align:center;line-height:15px;border:2px solid white;color:black;">
                         @Session[taka.Utils.C.SESSION.Cart]
                     </b>
                 </a>
-                <button type="button" class="btn btn-light m-1" data-toggle="modal" data-target="#modalUser" style="color:#00B38F;">
-                    <b>Xin chào @userInfo.FULLNAME</b>
+                <button type="button" class="btn btn-light m-1" data-toggle="modal" data-target="#modalUser">
+                    Xin chào @userInfo.FULLNAME
                 </button>
             }
         </nav>
