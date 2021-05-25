@@ -17,21 +17,12 @@
             justify-content: center;
         }
 
-            .hero::after {
-                width: 100%;
-                height: 100%;
-                content: '';
-                position: absolute;
-                z-index: 10;
-                top: 0;
-                left: 0;
-            }
 
             .hero video {
                 width: 100%;
                 height: 100%;
                 position: absolute;
-                top: 130px;
+                top: 0;
                 left: 0;
                 z-index: 5;
                 object-fit: cover;
@@ -56,7 +47,7 @@
             font-family: 'Open Sans', sans-serif;
             height: 40px;
             width: 150px;
-            margin-top: 100px;
+            margin-top: 80px;
             border-radius: 0;
             border-width: 2px;
         }
@@ -67,8 +58,7 @@
                 opacity:0.8;
             }
         .caption img{
-            margin-top:100px;
-            padding-bottom:50px;
+            bottom: 100px;
         }
     </style>
 </header>
@@ -170,9 +160,6 @@
     let playingVideo = () => {
         $('video')[0].play();
     }
-    let scrollToVideo = () => {
-        $('html').animate({ scrollTop: 130 }, 300)
-    }
     $(document).ready(function () {
         $("#more-info").click(function () {
             $('html, body').animate({
@@ -181,5 +168,4 @@
         });
     });
     playingVideo();
-    setTimeout(scrollToVideo, 1000);
 </script>

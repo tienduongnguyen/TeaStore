@@ -2,15 +2,29 @@
     taka.Models.Enitities.USER userInfo = (taka.Models.Enitities.USER)Session["UserInfo"];
 }
 
-<header style="background-color:#00B38F" role="banner">
-    
 
-    <div class="container">
-        <nav class="nav float-right">
+<header style="background-color:#00B38F" role="banner">
+    <style>
+        .nav button {
+            color: white;
+            z-index: 49;
+            font-size: 1rem;
+            border-width: 2px;
+        }
+
+        .nav button:hover {           
+            border-color: #00B38F;
+            color: #00B38F;
+            opacity: 0.8;
+        }
+    </style>
+
+    <div class="container-fluid" style="width:100%;">
+        <nav class="nav float-right" style="margin-top:15px;">
             @if (userInfo == null)
             {
-                <button type="button" class="btn btn-light m-1" onclick="goToLoginPage()" style="color:#00B38F;">
-                    <b>Đăng nhập</b>
+                <button type="button" class="btn btn-outline-light m-1" onclick="goToLoginPage()">
+                    Đăng nhập
                 </button>
             }
             @if (userInfo != null && userInfo.ID.Equals(taka.Utils.C.ID_ADMIN))
@@ -36,14 +50,15 @@
             }
         </nav>
     </div>
-    <form action="/Home/List" class="input-group container pt-4 pb-4 mt-5">
-        <a href="/" class="col-2" style="margin-top:-5px;margin-right:35px">
+    <br />
+    <form action="/Home/List" class="input-group container pt-4 pb-4 mt-5" style="z-index: 50; margin-left: 165px;">
+        <a href="/" class="col-2" style="margin-top:-5px;margin-right:35px;padding-top:5px; ">
             <img style="width:100%;min-height:40px;max-height:40px;object-fit:contain" src="~/Content/Icon/ic_icon.png" />
         </a>
         <div class="col-9 input-group">
-            <input name="text" type="text" class="form-control" placeholder="Trà Assam" value="@ViewBag.TextSearch" />
-            <button class="btn btn-solid-primary btn-light" style="color:white;background-color:#00B38F;" type="submit">
-                <ion-icon style="font-size:15px" name="search"></ion-icon>
+            <input name="text" type="text" style="margin-left:5px; border:none; border-radius:5px;" class="form-control" placeholder="Trà Assam" value="@ViewBag.TextSearch" />
+            <button class="btn btn-solid-primary btn-light" style="color:white;background-color:transparent;border:none;" type="submit">
+                <ion-icon style="font-size:25px" name="search"></ion-icon>
             </button>
         </div>
     </form>
