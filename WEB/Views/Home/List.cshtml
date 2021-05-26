@@ -5,23 +5,29 @@
     ViewBag.Title = "Teader";
 
 }
-<style>
-    .item-page {
-        text-align: center;
-        margin-bottom: 30px;
-        padding: 10px;
-        background-color: lightgray;
-        color: black;
-        margin-left: 5px;
-        margin-right: 5px;
-        border-radius: 5px;
-        max-width: 50px;
-    }
-    .confirm-price:hover {
-        background-color: #00876c;
-    }
-</style>
-
+<head>
+    <style>
+        .item-page {
+            text-align: center;
+            margin-bottom: 30px;
+            padding: 10px;
+            background-color: lightgray;
+            color: black;
+            margin-left: 5px;
+            margin-right: 5px;
+            border-radius: 5px;
+            max-width: 50px;
+        }
+        .confirm-price {
+            background-color: #00B38F;
+            color: white;
+        }
+        .confirm-price:hover {
+            background-color: #00876c;
+            color:white;
+        }
+    </style>
+</head>
 <div style="display:flex;flex-direction:row;">
     <div style="flex:1;min-width:160px">
         <div class="ml-3">
@@ -35,7 +41,7 @@
             <input type="number" class="form-control price" value="@ViewBag.PriceTo" style="max-width:180px;"/>
             <p>
                 <a href="#" onclick="getUrl({ priceFrom: $('.form-control.price')[0].value, priceTo:$('.form-control.price')[1].value })"
-                   class="btn btn-light mt-1 confirm-price" style="background-color:#00B38F;color:white">
+                   class="btn btn-light mt-1 confirm-price" style="">
                     Xác nhận
                 </a>
             </p>
