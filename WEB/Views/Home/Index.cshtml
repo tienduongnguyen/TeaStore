@@ -10,7 +10,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
     <style>
         .hero {
-            /*height: 450px;*/
+            height: 450px;
             width: 100%;
             display: flex;
             align-items: center;
@@ -181,17 +181,12 @@
             }, 2000);
         });
     });
-
     let scrollToHead = () => {
         $('html').animate({ scrollTop: 0 }, 2000)
     }
-
-    let setHeightHero = () => {
-        let height = $('video').height()-150;
-        $('.hero').css('height', height);
-    }
-    setHeightHero();
     playingVideo();
-    
-    
+    if (window.scrollY != 0) {
+        setTimeout(scrollToHead, 1000)
+    }
+
 </script>
