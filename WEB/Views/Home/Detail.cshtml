@@ -34,7 +34,7 @@
         </h1>
         <hr />
         <p>
-            <h5>Chi tiết sách</h5>
+            <h5>Chi tiết trà</h5>
         </p>
         <table class="table">
             <tbody>
@@ -43,7 +43,7 @@
                     <td>@Model.CATEGORY.NAME</td>
                 </tr>
                 <tr>
-                    <th>Số lượng</th>
+                    <th>Số lượng còn lại</th>
                     <td>@Model.AMOUNT</td>
                 </tr>
             </tbody>
@@ -75,18 +75,104 @@
         </div>
     </div>
 </div>
-<hr />
-<p>
-    <h5>
-        Mô tả sách
-    </h5>
-</p>
-<div class="p-3">
+@if (Model.DESCRIPTION != null)
+{
     <p>
-        @Model.DESCRIPTION
+        <h5>
+            @Model.TITLE
+        </h5>
     </p>
-</div>
-<hr />
+    <div class="p-3">
+        <p>
+            @Model.DESCRIPTION
+        </p>
+    </div>
+    <hr />
+}
+@if (Model.STORY != null)
+{
+    <p>
+        <h5>
+            Câu chuyện cảm hứng
+        </h5>
+    </p>
+    <div class="p-3">
+        <p>
+            @Model.STORY
+        </p>
+    </div>
+    <hr />
+}
+@if (Model.INGREDIENT != null)
+{
+    <p>
+        <h5>
+            Thành phần
+        </h5>
+    </p>
+    <div class="p-3">
+        <p>
+            @Model.INGREDIENT
+        </p>
+    </div>
+    <hr />
+}
+@if (Model.FUNCTION != null)
+{
+    <p>
+        <h5>
+            Công dụng
+        </h5>
+    </p>
+    <div class="p-3">
+        <p>
+            @Model.FUNCTION
+        </p>
+    </div>
+    <hr />
+}
+@if (Model.CAFFEIN != null)
+{
+    <p>
+        <h5>
+            Hàm lượng Caffeine
+        </h5>
+    </p>
+    <div class="p-3">
+        <p>
+            @Model.CAFFEIN
+        </p>
+    </div>
+    <hr />
+}
+@if (Model.WEIGHT != null)
+{
+    <p>
+        <h5>
+            Khối lượng
+        </h5>
+    </p>
+    <div class="p-3">
+        <p>
+            @Model.WEIGHT
+        </p>
+    </div>
+    <hr />
+}
+@if (Model.USE != null)
+{
+    <p>
+        <h5>
+            Hướng dẫn sử dụng
+        </h5>
+    </p>
+    <div class="p-3">
+        <p>
+            @Model.USE
+        </p>
+    </div>
+    <hr />
+}
 <h5>
     Đánh giá
 </h5>
@@ -151,7 +237,7 @@
 
 @if (userInfo != null && !userInfo.ID.Equals(taka.Utils.C.ID_ADMIN))
 {
-<script>
+    <script>
         let addToCart = () => {
             const quant = $("#amount-input").val();
             window.location.href = `/User/AddToCart?idTea=@Model.ID&quantity=${quant}`;
@@ -160,7 +246,7 @@
             const quant = $("#amount-input").URLval()URL
       URLURL      window.location.href = `/User/BuyNow?idTea=@Model.ID&quantity=${quant}`;
         }
-</script>
+    </script>
 }
 <script>
     let selectImgId = -1;
