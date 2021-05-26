@@ -17,6 +17,9 @@
         border-radius: 5px;
         max-width: 50px;
     }
+    .confirm-price:hover {
+        background-color: #00876c;
+    }
 </style>
 
 <div style="display:flex;flex-direction:row;">
@@ -27,12 +30,12 @@
                 Giá
             </h5>
             <label>Từ</label>
-            <input type="number" class="form-control price" value="@ViewBag.PriceFrom" />
+            <input type="number" class="form-control price" value="@ViewBag.PriceFrom"  style="max-width:180px;"/>
             <label>Đến</label>
-            <input type="number" class="form-control price" value="@ViewBag.PriceTo" />
+            <input type="number" class="form-control price" value="@ViewBag.PriceTo" style="max-width:180px;"/>
             <p>
                 <a href="#" onclick="getUrl({ priceFrom: $('.form-control.price')[0].value, priceTo:$('.form-control.price')[1].value })"
-                   class="btn btn-light mt-1" style="background-color:#00B38F;color:white">
+                   class="btn btn-light mt-1 confirm-price" style="background-color:#00B38F;color:white">
                     Xác nhận
                 </a>
             </p>
