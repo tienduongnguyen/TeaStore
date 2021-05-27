@@ -240,11 +240,11 @@
     <script>
         let addToCart = () => {
             const quant = $("#amount-input").val();
-            window.location.href = `/User/AddToCart?idTea=@Model.ID&quantity=${quant}`;
+            window.location.href = `/User/AddToCart?idTea=@Model.ID&amount=${quant}`;
         }
         let buyNow = () => {
-            const quant = $("#amount-input").URLval()URL
-      URLURL      window.location.href = `/User/BuyNow?idTea=@Model.ID&quantity=${quant}`;
+            const quant = $("#amount-input").val()
+            window.location.href = `/User/BuyNow?idTea=@Model.ID&amount=${quant}`;
         }
     </script>
 }

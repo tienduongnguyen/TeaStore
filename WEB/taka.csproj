@@ -212,6 +212,10 @@
     <Content Include="Views\User\EditUser.cshtml" />
     <Content Include="Views\User\Infor.cshtml" />
     <Content Include="Views\User\_LayoutUser.cshtml" />
+    <Content Include="Views\User\AddressDetails.cshtml" />
+    <Content Include="Views\User\AddAddress.cshtml" />
+    <Content Include="Views\User\EditAddress.cshtml" />
+    <Content Include="Views\User\ModelDeleteAddress.cshtml" />
     <Content Include="Views\Home\Login.cshtml" />
     <Content Include="Views\Admin\Shared\_Layout.cshtml" />
     <Content Include="Views\User\Purchased.cshtml" />
