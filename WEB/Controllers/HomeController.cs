@@ -18,11 +18,8 @@ namespace taka.Controllers
         public ActionResult List(int page = 1, string text = "", int cate = 0, int sort = 0, int pageSize = 10, int type = 0, int language = 0, int priceFrom = 0, int priceTo = 0)
         {
             ViewBag.ListCate = dB.GetCategories();
-            //ViewBag.ListType = dB.GetTypes();
-            //ViewBag.ListLanguage = dB.GetLanguages();
             ViewBag.Cate = cate;
             ViewBag.Sort = sort;
-            //ViewBag.Type = type;
             if (priceFrom > priceTo)
                 priceTo = 0;
             ViewBag.PriceFrom = priceFrom;

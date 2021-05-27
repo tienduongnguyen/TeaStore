@@ -77,12 +77,12 @@
 </div>
 @if (Model.DESCRIPTION != null)
 {
-    <p>
+    <div data-toggle="collapse"  data-target="#description-hidden" >
         <h5>
             @Model.TITLE
         </h5>
-    </p>
-    <div class="p-3">
+    </div>
+    <div class="p-3 collapse" id="description-hidden" >
         <p>
             @Model.DESCRIPTION
         </p>
@@ -91,12 +91,12 @@
 }
 @if (Model.STORY != null)
 {
-    <p>
+    <div data-toggle="collapse" data-target="#story-hidden">
         <h5>
             Câu chuyện cảm hứng
         </h5>
-    </p>
-    <div class="p-3">
+    </div>
+    <div class="p-3 collapse" id="story-hidden" >
         <p>
             @Model.STORY
         </p>
@@ -105,12 +105,12 @@
 }
 @if (Model.INGREDIENT != null)
 {
-    <p>
+    <div data-toggle="collapse" href="#ingredient-hidden">
         <h5>
             Thành phần
         </h5>
-    </p>
-    <div class="p-3">
+    </div>
+    <div class="p-3 collapse" id="ingredient-hidden" >
         <p>
             @Model.INGREDIENT
         </p>
@@ -119,12 +119,12 @@
 }
 @if (Model.FUNCTION != null)
 {
-    <p>
+    <div data-toggle="collapse" href="#function-hidden">
         <h5>
             Công dụng
         </h5>
-    </p>
-    <div class="p-3">
+    </div>
+    <div class="p-3 collapse" id="function-hidden" >
         <p>
             @Model.FUNCTION
         </p>
@@ -133,12 +133,12 @@
 }
 @if (Model.CAFFEIN != null)
 {
-    <p>
+    <div data-toggle="collapse" href="#caffein-hidden">
         <h5>
             Hàm lượng Caffeine
         </h5>
-    </p>
-    <div class="p-3">
+    </div>
+    <div class="p-3 collapse" id="caffein-hidden" >
         <p>
             @Model.CAFFEIN
         </p>
@@ -147,12 +147,12 @@
 }
 @if (Model.WEIGHT != null)
 {
-    <p>
+    <div data-toggle="collapse" href="#weight-hidden">
         <h5>
             Khối lượng
         </h5>
-    </p>
-    <div class="p-3">
+    </div>
+    <div class="p-3 collapse" id="weight-hidden" >
         <p>
             @Model.WEIGHT
         </p>
@@ -161,22 +161,24 @@
 }
 @if (Model.USE != null)
 {
-    <p>
+    <div data-toggle="collapse" href="#use-hidden">
         <h5>
             Hướng dẫn sử dụng
         </h5>
-    </p>
-    <div class="p-3">
+    </div>
+    <div class="p-3 collapse" id="use-hidden" >
         <p>
             @Model.USE
         </p>
     </div>
     <hr />
 }
-<h5>
-    Đánh giá
-</h5>
-<div class="pl-3 pr-3">
+<div data-toggle="collapse" href="#rate-hidden">
+    <h5>
+        Đánh giá
+    </h5>
+</div>
+<div class="pl-3 pr-3 collapse" id="rate-hidden">
     @if (Model.RATEs.Count == 0)
     {
         <div>Chưa có đánh giá</div>
@@ -266,8 +268,8 @@
         }
     }
     const onMouseMoveOutline = (id) => {
-        $('#' + id).css('background-color', '#ebd059')
-        $('#' + id).css('border-color', '#ebd059')
+        $('#' + id).css('background-color', '#6ae35f')
+        $('#' + id).css('border-color', '#6ae35f')
         $('#' + id).css('color', 'white')
     }
     const onMouseOutOutline = (id) => {
@@ -277,8 +279,8 @@
 
     }
     const onMouseMoveColorFilled = (id) => {
-        $('#' + id).css('background-color', '#c42708')
-        $('#' + id).css('border-color', '#c42708')
+        $('#' + id).css('background-color', '#008268')
+        $('#' + id).css('border-color', '#008268')
     }
     const onMouseOutColorFilled = (id) => {
         $('#' + id).css('background-color', '#00B38F')
