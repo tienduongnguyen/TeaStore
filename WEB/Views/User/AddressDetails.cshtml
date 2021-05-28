@@ -4,7 +4,18 @@
     ViewBag.Title = "Teader";
     Layout = "~/Views/User/_LayoutUser.cshtml";
 }
-
+<head>
+    <style>
+        .new-address {
+            background-color: #00B38F;
+            color: white;
+        }
+            .new-address:hover {
+                background-color: #008066;
+                color:white;
+            }
+    </style>
+</head>
 <body>
     @RenderPage("~/Views/User/ModelDeleteAddress.cshtml")
     <form action="/User/AddresDetails" method="post" role="form">
@@ -13,7 +24,7 @@
                 <h3> Danh Sách Địa Chỉ </h3>
             </div>
             <div style="margin-left:auto">
-                <a href="~/User/AddAddress" class="btn btn-light" style="background-color:#ee4d2d;color:white">
+                <a href="~/User/AddAddress" class="btn btn-light new-address" style="">
                     Thêm Địa Chỉ Mới
                 </a>
             </div>

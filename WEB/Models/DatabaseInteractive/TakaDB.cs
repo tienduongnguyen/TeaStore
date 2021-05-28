@@ -232,7 +232,8 @@ namespace taka.Models.DatabaseInteractive
         }
         public List<CART> GetListCarts(int idUser)
         {
-            var listCarts = takaDB.CARTs.Where(x => x.ID_USER == idUser).ToList();
+            List<CART> listCarts = new List<CART>();
+            listCarts = takaDB.CARTs.Where(x => x.ID_USER == idUser).ToList();
             return listCarts;
         }
         public void DeleteCartItem(int idUser, int idTea)
@@ -518,6 +519,27 @@ namespace taka.Models.DatabaseInteractive
         {
             List<ORDER> orders = takaDB.ORDERs.Where(x => x.ID_USER == id && x.ORDER_STATUS == 1).ToList();
             return orders;
+        }
+
+        public void AddRating(int idTea, int star, int idUser)
+        {
+
+            var findRating = takaDB.RATEs.Where(x => x.ID_TEA == idTea && x.ID_USER == idUser).ToList();
+            if (findRating.Count() > 0)
+            {
+                RATE rate = findRating.First();
+                rate.RATE1 = star;
+                takaDB.SaveChanges();
+            }
+            else
+            {
+                RATE rate = new RATE();
+                rate.ID_TEA = idTea;
+                rate.ID_USER = idUser;
+                rate.RATE1 = star;
+                takaDB.RATEs.Add(rate);
+                takaDB.SaveChanges();
+            }
         }
 
     }

@@ -71,6 +71,20 @@ namespace taka.Controllers
                 return Json(new { status = 0 });
             }
         }
+        [HttpPost]
+        public JsonResult AddRating (int idTea, int star)
+        {
+            try
+            {
+                USER user = (USER)Session[C.SESSION.UserInfo];
+                db.AddRating(idTea, star, user.ID);
+                return Json(new { status = 1 });
+            }
+            catch (Exception)
+            {
+                return Json(new { status = 0 });
+            }
+        }
         public ActionResult DeleteCartItem(int idTea)
         {
             USER user = (USER)Session[C.SESSION.UserInfo];
