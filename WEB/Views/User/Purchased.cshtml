@@ -7,6 +7,7 @@
 
     ViewBag.Title = "Teader";
     Layout = "~/Views/User/_LayoutUser.cshtml";
+
 }
 <head>
     <style>
@@ -71,77 +72,108 @@
     <div style="display:flex;flex:1;">
         <div class="tab-content" style="flex:1;" id="nav-tabContent">
             <div class="tab-pane fade active show" id="processing" role="tabpanel">
+                @if (processingOrders.Count() > 0)
+                {
+                    <ul class="list-group">
 
-                <ul class="list-group">
-                    @foreach (var item in processingOrders)
-                    {
-
-                        <li class="list-group-item list-group-item-action" data-toggle="collapse" data-target=".detail_@item.ID">
-                            <h5>@item.CLIENT_NAME</h5>
-                            <strong>@item.SHIPPER</strong>
-                            <p>@addresses.Where(x => x.ID == item.ID_ADDRESS).ToList().First().ADDRESS1</p>
-                            <h6 class="text-right" style="color:#ee2d4d;">@String.Format(new System.Globalization.CultureInfo("vi-VN"), "{0:N0}", item.TOTAL_PRICE) VND</h6>
-                        </li>
-                        foreach (var tea in item.ORDER_DETAIL.ToList())
+                        @foreach (var item in processingOrders)
                         {
-                            <li class="list-group-item list-group-item-action collapse detail_@item.ID">
-                                <img src="@tea.TEA.IMAGEs.First().URL" style="width:80px; height:80px;" />
-                                <strong>@tea.TEA.TITLE</strong>
 
-                                <p align="right">Số lượng: @tea.AMOUNT</p>
+                            <li class="list-group-item list-group-item-action" data-toggle="collapse" data-target=".detail_@item.ID">
+                                <h5>@item.CLIENT_NAME</h5>
+                                <strong>@item.SHIPPER</strong>
+                                <p>@addresses.Where(x => x.ID == item.ID_ADDRESS).ToList().First().ADDRESS1</p>
+                                <h6 class="text-right" style="color:#ee2d4d;">@String.Format(new System.Globalization.CultureInfo("vi-VN"), "{0:N0}", item.TOTAL_PRICE) VND</h6>
                             </li>
+                            foreach (var tea in item.ORDER_DETAIL.ToList())
+                            {
+                                <li class="list-group-item list-group-item-action collapse detail_@item.ID">
+                                    <img src="@tea.TEA.IMAGEs.First().URL" style="width:80px; height:80px;" />
+                                    <strong>@tea.TEA.TITLE</strong>
 
+                                    <p align="right">Số lượng: @tea.AMOUNT</p>
+                                </li>
+
+                            }
                         }
-                    }
-                </ul>
+
+                    </ul>
+                }
+                else
+                {
+                    <div style="text-align:center;margin-top:100px;margin-bottom:100px" class="col">
+                        <img src="https://deo.shopeemobile.com/shopee/shopee-pcmall-live-sg/assets/4122b759f91bd8dce310f1bc691e78ad.png">
+                        <div class="product-not-exist__text">Không tìm thấy đơn hàng</div>
+                    </div>
+                }
             </div>
             <div class="tab-pane fade" id="deliveried" role="tabpanel">
+                @if (doneOrders.Count() > 0)
+                {
+                    <ul class="list-group">
 
-                <ul class="list-group">
-                    @foreach (var item in doneOrders)
-                    {
-                        <li class="list-group-item list-group-item-action" data-toggle="collapse" data-target=".detail_@item.ID">
-
-                            <h5>@item.CLIENT_NAME</h5>
-                            <strong>@item.SHIPPER</strong>
-                            <p>@addresses.Where(x => x.ID == item.ID_ADDRESS).ToList().First().ADDRESS1</p>
-                            <h6 class="text-right" style="color:#ee2d4d;">@String.Format(new System.Globalization.CultureInfo("vi-VN"), "{0:N0}", item.TOTAL_PRICE) VND</h6>
-
-
-                        </li>
-
-                        foreach (var tea in item.ORDER_DETAIL.ToList())
+                        @foreach (var item in doneOrders)
                         {
+                            <li class="list-group-item list-group-item-action" data-toggle="collapse" data-target=".detail_@item.ID">
 
-                <li class="list-group-item list-group-item-action collapse detail_@item.ID" id="tea_@tea.ID">
-                    <img src="@tea.TEA.IMAGEs.First().URL" style="width:80px; height:80px;" />
-                    <strong>@tea.TEA.TITLE</strong>
+                                <h5>@item.CLIENT_NAME</h5>
+                                <strong>@item.SHIPPER</strong>
+                                <p>@addresses.Where(x => x.ID == item.ID_ADDRESS).ToList().First().ADDRESS1</p>
+                                <h6 class="text-right" style="color:#ee2d4d;">@String.Format(new System.Globalization.CultureInfo("vi-VN"), "{0:N0}", item.TOTAL_PRICE) VND</h6>
 
-                    <p align="right">Số lượng: @tea.AMOUNT</p>
-                    @*Star Rating*@
-                    <div class="rate" onchange="getStar(@tea.ID_TEA, @tea.ID)" >
-                        <input type="radio" id="star5_@tea.ID" name="rate" value="5" />
-                        <label for="star5_@tea.ID" title="text">5 stars</label>
-                        <input type="radio" id="star4_@tea.ID" name="rate" value="4" />
-                        <label for="star4_@tea.ID" title="text">4 stars</label>
-                        <input type="radio" id="star3_@tea.ID" name="rate" value="3" />
-                        <label for="star3_@tea.ID" title="text">3 stars</label>
-                        <input type="radio" id="star2_@tea.ID" name="rate" value="2" />
-                        <label for="star2_@tea.ID" title="text">2 stars</label>
-                        <input type="radio" id="star1_@tea.ID" name="rate" value="1" />
-                        <label for="star1_@tea.ID" title="text">1 star</label>
-                    </div>
-                    <img onerror="Rated(@tea.ID, @tea.TEA.RATEs.Where(x=>x.ID_USER==Model.ID).First().RATE1)" src="" style="display:none">
+                            </li>
 
-                    <script>
+                            foreach (var tea in item.ORDER_DETAIL.ToList())
+                            {
 
-                    </script>
-                    @*End Star Rating*@
-                </li>
+                                <li class="list-group-item list-group-item-action collapse detail_@item.ID" id="tea_@tea.ID">
+                                    <img src="@tea.TEA.IMAGEs.First().URL" style="width:80px; height:80px;" />
+                                    <strong>@tea.TEA.TITLE</strong>
 
+                                    <p align="right">Số lượng: @tea.AMOUNT</p>
+                                    @*Star Rating*@
+                                    <div class="rate" onchange="getStar(@tea.ID_TEA, @tea.ID);">
+                                        <input type="radio" id="star5_@tea.ID" name="rate_@tea.ID" value="5" />
+                                        <label for="star5_@tea.ID" title="Xuất sắc">5 stars</label>
+                                        <input type="radio" id="star4_@tea.ID" name="rate_@tea.ID" value="4" />
+                                        <label for="star4_@tea.ID" title="Tốt">4 stars</label>
+                                        <input type="radio" id="star3_@tea.ID" name="rate_@tea.ID" value="3" />
+                                        <label for="star3_@tea.ID" title="Bình thường">3 stars</label>
+                                        <input type="radio" id="star2_@tea.ID" name="rate_@tea.ID" value="2" />
+                                        <label for="star2_@tea.ID" title="Không ổn">2 stars</label>
+                                        <input type="radio" id="star1_@tea.ID" name="rate_@tea.ID" value="1" />
+                                        <label for="star1_@tea.ID" title="Tệ">1 star</label>
+                                    </div>
+                                    @{
+                                        var starRated = tea.TEA.RATEs.Where(x => x.ID_USER == Model.ID).ToList();
+                                    }
+                                    @if (starRated.Count() > 0)
+                                    {
+                                        <img class="call-rated" onerror="Rated(@tea.ID, @starRated.First().RATE1)" src="" style="display:none">
+                                    }
+                                    @*End Star Rating*@
+                                        <br />
+                                    <form class="form-group" style="align-items: center;">
+                                        
+                                        <input  type="text" class="form-control" placeholder="Nhận xét"  height="35px"/>
+                                        <input type="submit" class="btn btn-success" style="margin-top:5px; float:right" value="Gửi"/>
+                                    </form>
+                                </li>
+
+                            }
                         }
-                    }
-                </ul>
+
+                    </ul>
+                }
+                else
+                {
+                    <div style="text-align:center;margin-top:100px;margin-bottom:100px" class="col">
+                        <img src="https://deo.shopeemobile.com/shopee/shopee-pcmall-live-sg/assets/4122b759f91bd8dce310f1bc691e78ad.png">
+                        <div class="product-not-exist__text">
+                            Không tìm thấy đơn hàng
+                        </div>
+                    </div>
+                }
             </div>
 
         </div>
@@ -157,8 +189,9 @@
             data: { idTea, star },
             success: data => { }
         });
+
     }
     let Rated = (idDetail, star) => {
-        $('#star' + star + '_' + idDetail).attr('checked', 'checked');
+        $('#star' + star + '_' + idDetail).attr('checked', 'checked')
     }
 </script>
