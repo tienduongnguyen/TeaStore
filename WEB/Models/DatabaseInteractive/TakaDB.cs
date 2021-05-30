@@ -541,6 +541,25 @@ namespace taka.Models.DatabaseInteractive
                 takaDB.SaveChanges();
             }
         }
+        public void AddComment(int idTea, string comment, int idUser)
+        {
+            var findComment = takaDB.RATEs.Where(x => x.ID_TEA == idTea && x.ID_USER == idUser).ToList();
+            if (findComment.Count() > 0)
+            {
+                RATE rate = findComment.First();
+                rate.COMMENT = comment;
+                takaDB.SaveChanges();
+            }
+            else
+            {
+                RATE rate = new RATE();
+                rate.ID_TEA = idTea;
+                rate.ID_USER = idUser;
+                rate.COMMENT = comment;
+                takaDB.RATEs.Add(rate);
+                takaDB.SaveChanges();
+            }
+        }
 
     }
 }

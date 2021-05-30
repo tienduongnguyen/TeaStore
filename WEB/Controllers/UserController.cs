@@ -72,12 +72,26 @@ namespace taka.Controllers
             }
         }
         [HttpPost]
-        public JsonResult AddRating (int idTea, int star)
+        public JsonResult AddRating(int idTea, int star)
         {
             try
             {
                 USER user = (USER)Session[C.SESSION.UserInfo];
                 db.AddRating(idTea, star, user.ID);
+                return Json(new { status = 1 });
+            }
+            catch (Exception)
+            {
+                return Json(new { status = 0 });
+            }
+        }
+        [HttpPost]
+        public JsonResult AddComment(int idTea, string comment)
+        {
+            try
+            {
+                USER user = (USER)Session[C.SESSION.UserInfo];
+                db.AddComment(idTea, comment, user.ID);
                 return Json(new { status = 1 });
             }
             catch (Exception)
