@@ -417,14 +417,14 @@ namespace taka.Models.DatabaseInteractive
             return billItems;
         }
 
-        public List<ADDRESS> GetAddresses(int idUser)
+        public List<ADDRESS> GetAddressByUser(int idUser)
         {
             List<ADDRESS> addresses = new List<ADDRESS>();
             addresses = takaDB.ADDRESSes.Where(x => x.ID_USER == idUser).ToList();
             return addresses;
         }
 
-        public ADDRESS GetAddress(int idAddress)
+        public ADDRESS GetAddressByIdAddress(int? idAddress)
         {
             return takaDB.ADDRESSes.Where(x => x.ID == idAddress).First();
         }
@@ -510,15 +510,33 @@ namespace taka.Models.DatabaseInteractive
             takaDB.SaveChanges();
         }
 
-        public List<ORDER> GetProcessingOrders(int id)
+        public List<ORDER> GetProcessingOrders(int id = -1)
         {
-            List<ORDER> orders = takaDB.ORDERs.Where(x => x.ID_USER == id && x.ORDER_STATUS == 0).ToList();
+            List<ORDER> orders = id.Equals(-1) ?
+                takaDB.ORDERs.Where(x => x.ORDER_STATUS == 0).ToList()
+                : takaDB.ORDERs.Where(x => x.ID_USER == id && x.ORDER_STATUS == 0).ToList();
+            orders = orders.OrderByDescending(x => x.CREATE_DATE).ToList();
             return orders;
         }
-        public List<ORDER> GetDoneOrders(int id)
+
+        public List<ORDER> GetDoneOrders(int id = -1)
         {
-            List<ORDER> orders = takaDB.ORDERs.Where(x => x.ID_USER == id && x.ORDER_STATUS == 1).ToList();
+            List<ORDER> orders = id.Equals(-1) ?
+                takaDB.ORDERs.Where(x => x.ORDER_STATUS == 1).ToList()
+                : takaDB.ORDERs.Where(x => x.ID_USER == id && x.ORDER_STATUS == 1).ToList();
+            orders = orders.OrderByDescending(x => x.CREATE_DATE).ToList();
             return orders;
+        }
+
+        public void ConfirmOrder(int id)
+        {
+            ORDER order = takaDB.ORDERs.Where(x => x.ID.Equals(id)).First();
+            if (order != null)
+            {
+                order.ORDER_STATUS = 1;
+                order.CREATE_DATE = DateTime.Now;
+                takaDB.SaveChanges();
+            }
         }
 
         public void AddRating(int idTea, int star, int idUser)

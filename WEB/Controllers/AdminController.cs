@@ -58,7 +58,21 @@ namespace taka.Controllers
 
         public ActionResult Order()
         {
+            List<ORDER> processingOrder = dB.GetProcessingOrders();
+            List<ORDER> doneOrder = dB.GetDoneOrders();
+            ViewBag.ProcessingOrders = processingOrder;
+            ViewBag.ProcessingOrdersAddresses = processingOrder.Select(x => dB.GetAddressByIdAddress(x.ID_ADDRESS)).ToList();
+            ViewBag.DoneOrders = doneOrder;
+            ViewBag.DoneOrdersAddresses = doneOrder.Select(x => dB.GetAddressByIdAddress(x.ID_ADDRESS)).ToList();
+
             return View();
+        }
+
+        [HttpPost]
+        public ActionResult ConfirmOrder(int id)
+        {
+            dB.ConfirmOrder(id);
+            return RedirectToAction("Order", "Admin");
         }
 
         public ActionResult User()

@@ -18,13 +18,17 @@ namespace taka.Controllers
         {
             return View();
         }
-        public ActionResult Purchased()
+        public ActionResult Purchased(string tab = "processing")
         {
             USER user = (USER)Session[C.SESSION.UserInfo];
-            ViewBag.Addresses = db.GetAddresses(user.ID);
-            ViewBag.ProcessingOrders = db.GetProcessingOrders(user.ID);
-            ViewBag.DoneOrders = db.GetDoneOrders(user.ID);
-            return View(user);
+            List<ORDER> processingOrder = db.GetProcessingOrders(user.ID);
+            List<ORDER> doneOrder = db.GetDoneOrders(user.ID);
+            ViewBag.Tab = tab;
+            ViewBag.ProcessingOrders = processingOrder;
+            ViewBag.ProcessingOrdersAddresses = processingOrder.Select(x => db.GetAddressByIdAddress(x.ID_ADDRESS)).ToList();
+            ViewBag.DoneOrders = doneOrder;
+            ViewBag.DoneOrdersAddresses = doneOrder.Select(x => db.GetAddressByIdAddress(x.ID_ADDRESS)).ToList();
+            return View();
         }
         public ActionResult AddToCart(int idTea, int amount)
         {
@@ -42,7 +46,7 @@ namespace taka.Controllers
         {
             var listItems = db.GetBillItems(idCarts);
             USER user = (USER)Session[C.SESSION.UserInfo];
-            ViewBag.addresses = db.GetAddresses(user.ID);
+            ViewBag.addresses = db.GetAddressByUser(user.ID);
             return View(listItems);
         }
         [HttpPost]
@@ -129,7 +133,7 @@ namespace taka.Controllers
         public ActionResult AddressDetails()
         {
             USER user = (USER)Session[C.SESSION.UserInfo];
-            List<ADDRESS> listadr = db.GetAddresses(user.ID);
+            List<ADDRESS> listadr = db.GetAddressByUser(user.ID);
             return View(listadr);
         }
 
@@ -148,7 +152,7 @@ namespace taka.Controllers
         public ActionResult EditAddress(int idAddress)
         {
             USER user = (USER)Session[C.SESSION.UserInfo];
-            ADDRESS adr = db.GetAddress(idAddress);
+            ADDRESS adr = db.GetAddressByIdAddress(idAddress);
             return View(adr);
         }
         [HttpPost]

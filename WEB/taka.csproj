@@ -218,6 +218,8 @@
     <Content Include="Views\User\ModelDeleteAddress.cshtml" />
     <Content Include="Views\Home\Login.cshtml" />
     <Content Include="Views\Admin\Shared\_Layout.cshtml" />
+    <Content Include="Views\Admin\Shared\ModalConfirmOrder.cshtml" />
+    <Content Include="Views\Admin\Shared\ModalDelete.cshtml" />
     <Content Include="Views\User\Purchased.cshtml" />
     <Content Include="Views\Admin\Tea.cshtml" />
   </ItemGroup>
