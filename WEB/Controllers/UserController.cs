@@ -25,10 +25,11 @@ namespace taka.Controllers
             List<ORDER> doneOrder = db.GetDoneOrders(user.ID);
             ViewBag.Tab = tab;
             ViewBag.ProcessingOrders = processingOrder;
-            ViewBag.ProcessingOrdersAddresses = processingOrder.Select(x => db.GetAddressByIdAddress(x.ID_ADDRESS)).ToList();
+            //ViewBag.ProcessingOrdersAddresses = processingOrder.Select(x => db.GetAddressByIdAddress(x.ID_ADDRESS)).ToList();
             ViewBag.DoneOrders = doneOrder;
-            ViewBag.DoneOrdersAddresses = doneOrder.Select(x => db.GetAddressByIdAddress(x.ID_ADDRESS)).ToList();
-            return View();
+            //ViewBag.DoneOrdersAddresses = doneOrder.Select(x => db.GetAddressByIdAddress(x.ID_ADDRESS)).ToList();
+            ViewBag.Addresses = db.GetAddressByUser(user.ID);
+            return View(user);
         }
         public ActionResult AddToCart(int idTea, int amount)
         {
