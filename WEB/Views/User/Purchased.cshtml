@@ -128,7 +128,9 @@
 
                                 <li class="list-group-item list-group-item-action collapse detail_@item.ID" id="tea_@tea.ID">
                                     <img src="@tea.TEA.IMAGEs.First().URL" style="width:80px; height:80px;" />
+                                    <a href="/Home/Detail?id=@tea.TEA.ID">
                                     <strong>@tea.TEA.TITLE</strong>
+                                    </a>
 
                                     <p align="right">Số lượng: @tea.AMOUNT</p>
                                     @*Star Rating*@

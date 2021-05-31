@@ -39,6 +39,20 @@
         <table class="table">
             <tbody>
                 <tr>
+                    <th>Đánh giá</th>
+                    <td class="row " style="color:lightgray; padding-top:15px;">
+                        @for (int i = 0; i < Model.RATEPOINT; i++)
+                        {
+                            <ion-icon style="color:#ffca00" name="star"></ion-icon>
+                        }
+                        @for (int i = 0; i < 5 - Model.RATEPOINT; i++)
+                        {
+                            <ion-icon name="star"></ion-icon>
+                        }
+                        <div style="color:#00B38F;margin-top:-5px" class="ml-1">(@Model.RATECOUNT)</div>
+                    </td>
+                </tr>
+                <tr>
                     <th>Thể loại</th>
                     <td>@Model.CATEGORY.NAME</td>
                 </tr>
@@ -77,12 +91,12 @@
 </div>
 @if (Model.DESCRIPTION != null)
 {
-    <div data-toggle="collapse"  data-target="#description-hidden" >
+    <div data-toggle="collapse" data-target="#description-hidden">
         <h5>
             @Model.TITLE
         </h5>
     </div>
-    <div class="p-3 collapse" id="description-hidden" >
+    <div class="p-3 collapse" id="description-hidden">
         <p>
             @Model.DESCRIPTION
         </p>
@@ -96,7 +110,7 @@
             Câu chuyện cảm hứng
         </h5>
     </div>
-    <div class="p-3 collapse" id="story-hidden" >
+    <div class="p-3 collapse" id="story-hidden">
         <p>
             @Model.STORY
         </p>
@@ -110,7 +124,7 @@
             Thành phần
         </h5>
     </div>
-    <div class="p-3 collapse" id="ingredient-hidden" >
+    <div class="p-3 collapse" id="ingredient-hidden">
         <p>
             @Model.INGREDIENT
         </p>
@@ -124,7 +138,7 @@
             Công dụng
         </h5>
     </div>
-    <div class="p-3 collapse" id="function-hidden" >
+    <div class="p-3 collapse" id="function-hidden">
         <p>
             @Model.FUNCTION
         </p>
@@ -138,7 +152,7 @@
             Hàm lượng Caffeine
         </h5>
     </div>
-    <div class="p-3 collapse" id="caffein-hidden" >
+    <div class="p-3 collapse" id="caffein-hidden">
         <p>
             @Model.CAFFEIN
         </p>
@@ -152,7 +166,7 @@
             Khối lượng
         </h5>
     </div>
-    <div class="p-3 collapse" id="weight-hidden" >
+    <div class="p-3 collapse" id="weight-hidden">
         <p>
             @Model.WEIGHT
         </p>
@@ -166,7 +180,7 @@
             Hướng dẫn sử dụng
         </h5>
     </div>
-    <div class="p-3 collapse" id="use-hidden" >
+    <div class="p-3 collapse" id="use-hidden">
         <p>
             @Model.USE
         </p>
@@ -185,13 +199,12 @@
     }
     else
     {
-        <hr />
         foreach (var rate in Model.RATEs)
         {
             <br />
-            <i>
+            <h5>
                 @rate.USER.FULLNAME
-            </i>
+            </h5>
             <div class="row ml-0 mt-1" style="color:lightgray">
                 @for (int _ = 0; _ < rate.RATE1; _++)
                 {
@@ -202,9 +215,10 @@
                     <ion-icon name="star"></ion-icon>
                 }
             </div>
-            <p>
+            <i class="row" style="padding:15px;margin-left:15px;">
+                <i class="fa fa-quote-left pr-2"></i>
                 @rate.COMMENT
-            </p>
+            </i>
             <hr />
         }
     }
