@@ -18,11 +18,11 @@
                             <td>@user.FULLNAME</td>
                             @if (user.isBAN != 1)
                             {
-                                <td><a href="/Admin/BanUser?id=@user.ID&ban=1"><img src="~/Content/Icon/ic_lock.png" style="width:25px" /></a></td>
+                                <td><a href="/Admin/BanUser?id=@user.ID&ban=1"><img src="~/Content/Icon/ic_unlock.png" style="width:25px" /></a></td>
                             }
                             else
                             {
-                                <td><a href="/Admin/BanUser?id=@user.ID&ban=0"><img src="~/Content/Icon/ic_unlock.png" style="width:25px" /></a></td>
+                                <td><a href="/Admin/BanUser?id=@user.ID&ban=0"><img src="~/Content/Icon/ic_lock.png" style="width:25px" /></a></td>
                             }
                         </tr>
 

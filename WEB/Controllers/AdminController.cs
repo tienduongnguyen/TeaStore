@@ -119,7 +119,7 @@ namespace taka.Controllers
             string Use)
         {
             dB.EditTea(ID, images_delete, Images, Title, Price, idCategory, Amount, Description, Story, Ingredient, Function, Caffein, Weight, Use);
-            return RedirectToAction("Edit", "Admin", new { id = ID });
+            return RedirectToAction("Tea", "Admin");
         }
 
         [HttpPost]

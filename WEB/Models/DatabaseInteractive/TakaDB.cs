@@ -70,8 +70,8 @@ namespace taka.Models.DatabaseInteractive
                     listItem = listItem.OrderByDescending(m => m.PRICE);
                     break;
             }
-            
-            int maxPage = (int)Math.Ceiling((double)((double)listItem.Count() / (double)pageSize));
+
+            int maxPage = listItem.Count() / pageSize + 1;
             return new ListTea(maxPage, listItem.Skip((page - 1) * pageSize).Take(pageSize).ToList());
         }
 
