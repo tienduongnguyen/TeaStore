@@ -15,7 +15,7 @@ namespace taka.Controllers
 
         TakaDB dB = new TakaDB();
 
-        public ActionResult List(int page = 1, string text = "", int cate = 0, int sort = 0, int pageSize = 10, int type = 0, int language = 0, int priceFrom = 0, int priceTo = 0)
+        public ActionResult List(int page = 1, string text = "", int cate = 0, int sort = 0, int pageSize = 12, int type = 0, int language = 0, int priceFrom = 0, int priceTo = 0)
         {
             ViewBag.ListCate = dB.GetCategories();
             ViewBag.Cate = cate;
@@ -25,7 +25,7 @@ namespace taka.Controllers
             ViewBag.PriceFrom = priceFrom;
             ViewBag.PriceTo = priceTo;
             ViewBag.Language = language;
-            ViewBag.PageSize = 10;
+            ViewBag.PageSize = 12;
             ViewBag.CurrentPage = page;
             switch (sort)
             {
@@ -42,7 +42,7 @@ namespace taka.Controllers
                     ViewBag.TextSort = C.DROPDOWN_SORT.HIGHEST_PRICE;
                     break;
             }
-            if (pageSize != 10 && pageSize % 10 == 0 && pageSize <= 64)
+            if (pageSize != 12 && pageSize % 12 == 0 && pageSize <= 64)
             {
                 ViewBag.PageSize = pageSize;
             }
