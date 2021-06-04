@@ -469,6 +469,13 @@ namespace taka.Models.DatabaseInteractive
             }
         }
 
+        public void ChangePassword(string newPass, int idUser)
+        {
+            USER user = takaDB.USERs.Where(x => x.ID == idUser).First();
+            user.PASSWORD = HelperFunctions.sha256(newPass);
+            takaDB.SaveChanges();
+        }
+
         public void CheckOut(int[] id_cart, int id_address, int totalPrice, string shipper, int idUser, string fullName, string phone, string address, string message)
         {
 

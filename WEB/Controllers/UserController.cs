@@ -170,5 +170,18 @@ namespace taka.Controllers
             db.DeleteAddress(idAddress);
             return RedirectToAction("AddressDetails", "User");
         }
+        public ActionResult ChangePassword()
+        {
+            
+
+            return View();
+        }
+        [HttpPost]
+        public ActionResult ChangePassword(string newPass)
+        {
+            USER user = (USER)Session[C.SESSION.UserInfo];
+            db.ChangePassword(newPass, user.ID);
+            return RedirectToAction("Infor", "User");
+        }
     }
 }
