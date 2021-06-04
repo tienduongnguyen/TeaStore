@@ -15,7 +15,7 @@ namespace taka.Controllers
 
         TakaDB dB = new TakaDB();
 
-        public ActionResult List(int page = 1, string text = "", int cate = 0, int sort = 0, int pageSize = 12, int type = 0, int language = 0, int priceFrom = 0, int priceTo = 0)
+        public ActionResult List(int page = 1, string text = "", int cate = 0, int sort = 0, int pageSize = 12, int priceFrom = 0, int priceTo = 0)
         {
             ViewBag.ListCate = dB.GetCategories();
             ViewBag.Cate = cate;
@@ -24,16 +24,15 @@ namespace taka.Controllers
                 priceTo = 0;
             ViewBag.PriceFrom = priceFrom;
             ViewBag.PriceTo = priceTo;
-            ViewBag.Language = language;
             ViewBag.PageSize = 12;
             ViewBag.CurrentPage = page;
             switch (sort)
             {
                 case 0:
-                    ViewBag.TextSort = C.DROPDOWN_SORT.NEWEST;
+                    ViewBag.TextSort = C.DROPDOWN_SORT.HIGHEST_AMOUNT;
                     break;
                 case 1:
-                    ViewBag.TextSort = C.DROPDOWN_SORT.OLDEST;
+                    ViewBag.TextSort = C.DROPDOWN_SORT.LOWEST_AMOUNT;
                     break;
                 case 2:
                     ViewBag.TextSort = C.DROPDOWN_SORT.LOWEST_PRICE;
@@ -46,7 +45,7 @@ namespace taka.Controllers
             {
                 ViewBag.PageSize = pageSize;
             }
-            ListTea listTea = dB.GetListTea(page, text, cate, sort, pageSize, type, language, priceFrom, priceTo);
+            ListTea listTea = dB.GetListTea(page, text, cate, sort, pageSize, priceFrom, priceTo);
             ViewBag.ListPage = HelperFunctions.getNumPage(page, listTea.pages);
             ViewBag.maxPage = listTea.pages;
             ViewBag.TextSearch = text;

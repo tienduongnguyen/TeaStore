@@ -39,7 +39,7 @@ namespace taka.Models.DatabaseInteractive
             takaDB = new TakaDBContext();
         }
 
-        public ListTea GetListTea(int page = 1, string text = "", int cate = 0, int sort = 0, int pageSize = 12, int type = 0, int language = 0, int priceFrom = 0, int priceTo = 0)
+        public ListTea GetListTea(int page = 1, string text = "", int cate = 0, int sort = 0, int pageSize = 12, int priceFrom = 0, int priceTo = 0)
         {
             var removeUnicode = HelperFunctions.RemoveUnicode(text);
             var listItem = takaDB.TEAs.Where(x => x.isHIDDEN != 1);
@@ -58,15 +58,18 @@ namespace taka.Models.DatabaseInteractive
             switch (sort)
             {
                 case 0:
-                    listItem = listItem.OrderByDescending(m => m.ID);
-                    break;
-                case 1:
                     listItem = listItem.OrderBy(m => m.ID);
                     break;
+                case 1:
+                    listItem = listItem.OrderByDescending(m => m.AMOUNT);
+                    break;
                 case 2:
-                    listItem = listItem.OrderBy(m => m.PRICE);
+                    listItem = listItem.OrderBy(m => m.AMOUNT);
                     break;
                 case 3:
+                    listItem = listItem.OrderBy(m => m.PRICE);
+                    break;
+                case 4:
                     listItem = listItem.OrderByDescending(m => m.PRICE);
                     break;
             }

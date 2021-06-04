@@ -30,15 +30,18 @@ namespace taka.Controllers
             switch (sort)
             {
                 case 0:
-                    ViewBag.TextSort = C.DROPDOWN_SORT.NEWEST;
+                    ViewBag.TextSort = C.DROPDOWN_SORT.SORT_DEFAULT;
                     break;
                 case 1:
-                    ViewBag.TextSort = C.DROPDOWN_SORT.OLDEST;
+                    ViewBag.TextSort = C.DROPDOWN_SORT.HIGHEST_AMOUNT;
                     break;
                 case 2:
-                    ViewBag.TextSort = C.DROPDOWN_SORT.LOWEST_PRICE;
+                    ViewBag.TextSort = C.DROPDOWN_SORT.LOWEST_AMOUNT;
                     break;
                 case 3:
+                    ViewBag.TextSort = C.DROPDOWN_SORT.LOWEST_PRICE;
+                    break;
+                case 4:
                     ViewBag.TextSort = C.DROPDOWN_SORT.HIGHEST_PRICE;
                     break;
             }
