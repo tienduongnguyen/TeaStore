@@ -39,8 +39,11 @@
             <div id="images" style="overflow-x:auto;height:300px;flex-direction:row;display:flex;overflow-y:hidden">
                 @for (int i = 0; i < images.Count; i++)
                 {
-                    <div onclick="deleteImage('@i', '@images[i].ID')" class="m-3" style="position: relative; display: inline-block;" id="divVoTra_@i" onmouseover="onFocusImg('@i')" onmouseout="onBlurImg()">
-                        <img id="imgVoTra_@i" src="@images[i].URL" style="height:250px;width:250px;object-fit:contain;text-align:center;" />
+                    var img = images[i];
+                    <div onclick="deleteImage('@i', '@img.ID')" class="m-3" style="position: relative; display: inline-block;" id="divVoTra_@i" onmouseover="onFocusImg('@i')" onmouseout="onBlurImg()">
+                        <input id="idImage" name="idImage" type="number" hidden value="@img.ID" />
+                        <input id="indexImage" name="indexImage" type="number" hidden value="@img.ORDER" />
+                        <img id="imgVoTra_@i" src="@img.URL" style="height:250px;width:250px;object-fit:contain;text-align:center;" />
                         <div style="position: absolute; top: 100px; left: 100px; height: 100%; width: 100%; z-index: 2;"><img hidden='hidden' id="icDelete_@i" style="height:50px;width:50px;object-fit:contain;" src="/Content/Icon/ic_delete.png" /></div>
                     </div>
                 }
@@ -198,6 +201,17 @@
         }
         setFileInput()
     }
+
+
+    let dropIndex;
+    $("#images").sortable({
+        update: function (event, ui) {
+            dropIndex = ui.item.index();
+            for (let i = 1; i < $("#images input").length; i = i + 2) {
+                $($("#images input")[i]).val(i)
+            }
+        }
+    });
 </script>
 
 <script>
