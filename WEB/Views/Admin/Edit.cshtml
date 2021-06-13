@@ -45,6 +45,7 @@
                         <input id="idImage" name="idImage" type="number" hidden value="@img.ID" />
                         <input id="indexImage" name="indexImage" type="number" hidden value="@img.ORDER" />
                         <img id="imgVoTra_@i" src="@img.URL" style="height:250px;width:250px;object-fit:contain;text-align:center;" />
+                        <div style="position: absolute; top: 100px; left: 100px; height: 100%; width: 100%; z-index: 2;"><img hidden='hidden' id="icDelete_@i" style="height:50px;width:50px;object-fit:contain;" src="/Content/Icon/ic_delete.png" /></div>
                         <div onclick="deleteImage('@i', '@img.ID')" style="position: absolute; top: 100px; left: 100px; height: 100%; width: 100%; z-index: 2;"><img hidden='hidden' id="icDelete_@i" style="height:50px;width:50px;object-fit:contain;" src="/Content/Icon/ic_delete.png" /></div>
                     </div>
                 }
