@@ -1,9 +1,11 @@
 ﻿@{
     IEnumerable<taka.Models.Enitities.TEA> Model = ViewBag.list;
     Layout = "~/Views/Admin/Shared/_Layout.cshtml";
+    ViewBag.TeaDeleteID = "";
+    ViewBag.TeaDeleteTitle = "";
 }
 
-@RenderPage("~/Views/Shared/ModalDelete.cshtml")
+@RenderPage("~/Views/Admin/Shared/ModalDelete.cshtml")
 
 <nav class="nav float-right p-3">
     <a href="/Admin/Add" class="btn btn-light" style="background-color:#00B38F;color:white">
@@ -128,7 +130,7 @@
                         @item.AMOUNT
                     </div>
                     <i class="price-tea" style="text-align:center">
-                        @String.Format(new System.Globalization.CultureInfo("vi-VN"), "{0:N0}", item.PRICE)đ
+                        @String.Format(new System.Globalization.CultureInfo("vi-VN"), "{0:N0}", item.PRICE) đ
                     </i>
                     <div class="header-tea" style="flex-direction:row">
                         <a href="/Admin/Edit?id=@item.ID">

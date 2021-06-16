@@ -64,29 +64,30 @@
         </table>
         <hr />
 
-        <div class="number-input md-number-input">
-            Số lượng:
-            <a class="btn btn-outline-light" onclick="changeQuantity(-1)" style="border:none;">
-                <ion-icon name="remove-outline"></ion-icon>
-            </a>
-            <input class="quantity" style="width:50px;text-align:center;" name="quantity" value="1" type="text" id="amount-input" oninput="onChangeTextQuantity()">
-            <a class="btn btn-outline-light" onclick="changeQuantity(1)" style="border:none;">
-                <ion-icon name="add-outline"></ion-icon>
-            </a>
-        </div>
-
-        <div class="row col">
-            @if (userInfo != null && userInfo.ID.Equals(taka.Utils.C.ID_ADMIN))
-            {
+        @if (userInfo != null && userInfo.ID.Equals(taka.Utils.C.ID_ADMIN))
+        {
+            <div class="row col">
                 <button type="button" onclick="updateTea()" onmousemove="onMouseMoveOutline('outline-btn')" onmouseout="onMouseOutOutline('outline-btn')" id="outline-btn" class="btn col p-3 m-3" style="background-color:white;color:#00B38F; border:3; border-color:#00B38F">Cập nhật thông tin</button>
                 <button type="button" onclick="showDeleteModal()" onmousemove="onMouseMoveColorFilled('colorfilled-btn')" onmouseout="onMouseOutColorFilled('colorfilled-btn')" id="colorfilled-btn" class="btn col p-3 m-3" style="background-color:#00B38F; color:white; border:3; border-color:#00B38F">Xoá</button>
-            }
-            else
-            {
+            </div>
+        }
+        else
+        {
+            <div class="number-input md-number-input">
+                Số lượng:
+                <a class="btn btn-outline-light" onclick="changeAmount(-1)" style="border:none;">
+                    <ion-icon name="remove-outline"></ion-icon>
+                </a>
+                <input class="amount" style="width:50px;text-align:center;" name="amount" value="1" type="text" id="amount-input" oninput="onChangeTextAmount()">
+                <a class="btn btn-outline-light" onclick="changeAmount(1)" style="border:none;">
+                    <ion-icon name="add-outline"></ion-icon>
+                </a>
+            </div>
+            <div class="row col">
                 <button type="button" onclick="addToCart()" onmousemove="onMouseMoveOutline('outline-btn')" onmouseout="onMouseOutOutline('outline-btn')" id="outline-btn" class="btn col p-3 m-3" style="background-color:white;color:#00B38F; border:3; border-color:#00B38F">Thêm vào giỏ hàng</button>
                 <button type="button" onclick="buyNow()" onmousemove="onMouseMoveColorFilled('colorfilled-btn')" onmouseout="onMouseOutColorFilled('colorfilled-btn')" id="colorfilled-btn" class="btn col p-3 m-3" style="background-color:#00B38F; color:white; border:3; border-color:#00B38F">Mua ngay</button>
-            }
-        </div>
+            </div>
+        }
     </div>
 </div>
 @if (Model.DESCRIPTION != null)
@@ -255,12 +256,12 @@
 {
     <script>
         let addToCart = () => {
-            const quant = $("#amount-input").val();
-            window.location.href = `/User/AddToCart?idTea=@Model.ID&amount=${quant}`;
+            const amou = $("#amount-input").val();
+            window.location.href = `/User/AddToCart?idTea=@Model.ID&amount=${amou}`;
         }
         let buyNow = () => {
-            const quant = $("#amount-input").val()
-            window.location.href = `/User/BuyNow?idTea=@Model.ID&amount=${quant}`;
+            const amou = $("#amount-input").val()
+            window.location.href = `/User/BuyNow?idTea=@Model.ID&amount=${amou}`;
         }
     </script>
 }
@@ -302,7 +303,7 @@
 
     }
 
-    let onChangeTextQuantity = () => {
+    let onChangeTextAmount = () => {
         let rawStr = $(".number-input input").val()
         if (rawStr.length == 0)
             $(".number-input input").val(1)
@@ -312,7 +313,7 @@
         }
     }
 
-    let changeQuantity = (val) => {
+    let changeAmount = (val) => {
         const result = parseInt($(".number-input input").val()) + val
         if (result == 0)
             return
