@@ -7,22 +7,23 @@
 
     List<taka.Models.Enitities.IMAGE> images = new List<taka.Models.Enitities.IMAGE>();
 
-    images.AddRange(Model.IMAGEs.ToList());
+    images.AddRange(Model.IMAGEs.OrderBy(x => x.ORDER).ToList());
 }
 
-
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
 
 <br />
 <br />
-<div class="row ml-2">
-    <div onclick="goBack()" style="cursor:pointer">
-        <ion-icon style="font-size:25px;color:#00B38F;margin-top:5px;margin-right:10px" name="arrow-back-circle-outline"></ion-icon>
-    </div>
-    <h4>Cập nhật thông tin</h4>
-</div>
 <div class="container">
     <form class="form-horizontal ml-2" method="post" action="/Admin/EditTea" enctype="multipart/form-data">
+        <div class="row ml-2">
+            <div onclick="goBack()" style="cursor:pointer">
+                <ion-icon style="font-size:25px;color:#00B38F;margin-top:5px;margin-right:10px" name="arrow-back-circle-outline"></ion-icon>
+            </div>
+            <h4>Cập nhật thông tin</h4>
+        </div>
         <hr />
         <p>
             <h5>Ảnh trà</h5>
@@ -40,11 +41,13 @@
                 @for (int i = 0; i < images.Count; i++)
                 {
                     var img = images[i];
-                    <div onclick="deleteImage('@i', '@img.ID')" class="m-3" style="position: relative; display: inline-block;" id="divVoTra_@i" onmouseover="onFocusImg('@i')" onmouseout="onBlurImg()">
+                    <div onclick="deleteImage('@i', '@img.ID')" class="m-3" style="position: relative; display: inline-block;" id="divVoTra_@i" onmouseout="onFocusImg('@i')" onmouseover="onBlurImg()">
                         <input id="idImage" name="idImage" type="number" hidden value="@img.ID" />
                         <input id="indexImage" name="indexImage" type="number" hidden value="@img.ORDER" />
                         <img id="imgVoTra_@i" src="@img.URL" style="height:250px;width:250px;object-fit:contain;text-align:center;" />
-                        <div style="position: absolute; top: 100px; left: 100px; height: 100%; width: 100%; z-index: 2;"><img hidden='hidden' id="icDelete_@i" style="height:50px;width:50px;object-fit:contain;" src="/Content/Icon/ic_delete.png" /></div>
+                        <div style="position: absolute; top: 100px; left: 100px; height: 100%; width: 100%; z-index: 2;">
+                            <img hidden='hidden' id="icDelete_@i" style="height:50px;width:50px;object-fit:contain;" src="/Content/Icon/ic_delete.png" />
+                        </div>
                     </div>
                 }
             </div>
@@ -202,7 +205,7 @@
     }
     const goBack = () => {
         if (document.referrer.includes("Edit")) {
-            window.location.href = '/Admin/Book'
+            window.location.hreIDf = '/Admin/Book'
         } else {
             history.back()
         }
@@ -261,10 +264,12 @@
 
                 let reader = new FileReader();
                 reader.onload = function (e) {
-                    $("#images").append(`<div onclick="deleteImage('${imgCount}')" class="m-3" style="position: relative; display: inline-block;" id="divVoTra_${imgCount}" onmouseover="onFocusImg('${imgCount}')" onmouseout="onBlurImg()">
-    <img id="imgVoTra_${imgCount}" style="height:250px;width:250px;object-fit:contain;text-align:center;" />
-    <div style="position: absolute; top: 100px; left: 100px; height: 100%; width: 100%; z-index: 2;"><img hidden='hidden' id="icDelete_${imgCount}" style="height:50px;width:50px;object-fit:contain;" src="/Content/Icon/ic_delete.png" /></div>
-</div>`)
+                    $("#images").append(`
+                        <div onclick="deleteImage('${imgCount}')" class="m-3" style="position: relative; display: inline-block;" id="divVoTra_${imgCount}" onmouseover="onFocusImg('${imgCount}')" onmouseout="onBlurImg()">
+                            <img id="imgVoTra_${imgCount}" style="height:250px;width:250px;object-fit:contain;text-align:center;" />
+                            <div style="position: absolute; top: 100px; left: 100px; height: 100%; width: 100%; z-index: 2;"><img hidden='hidden' id="icDelete_${imgCount}" style="height:50px;width:50px;object-fit:contain;" src="/Content/Icon/ic_delete.png" /></div>
+                        </div>
+                    `)
                     $('#imgVoTra_' + imgCount).attr('src', e.target.result);
                     listImg.push({
                         id: imgCount,
