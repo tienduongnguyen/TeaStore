@@ -398,6 +398,28 @@ namespace taka.Models.DatabaseInteractive
             takaDB.SaveChanges();
         }
 
+        public void ChangeImageOrder(int oldOrder, int newOrder, int id)
+        {
+            takaDB.IMAGEs.Where(x => x.ID == id).First().ORDER = newOrder;
+            int count = newOrder - oldOrder;
+            if (count > 0)
+            {
+                for (int i = 1; i <= count; i++)
+                {
+                    takaDB.IMAGEs.Where(x => x.ID == id + i).First().ORDER = takaDB.IMAGEs.Where(x => x.ID == id + i).First().ORDER - 1;
+                }
+            }
+            else if (count < 0)
+            {
+                count = 0 - count;
+                for (int i = 1; i <= count; i++)
+                {
+                    takaDB.IMAGEs.Where(x => x.ID == id - i).First().ORDER = takaDB.IMAGEs.Where(x => x.ID == id - i).First().ORDER + 1;
+                }
+            }
+            takaDB.SaveChanges();
+        }
+
         public List<BillItem> GetBillItems(int[] ids)
         {
 
