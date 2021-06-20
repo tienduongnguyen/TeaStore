@@ -126,6 +126,20 @@ namespace taka.Controllers
         }
 
         [HttpPost]
+        public JsonResult changeImageOrder(int oldOrder, int newOrder, int id)
+        {
+            try
+            {
+                dB.ChangeImageOrder(oldOrder, newOrder, id);
+                return Json(new { status = 1 });
+            }
+            catch (Exception)
+            {
+                return Json(new { status = 0 });
+            }
+        }
+
+        [HttpPost]
         public ActionResult Delete(int id = -1)
         {
             try

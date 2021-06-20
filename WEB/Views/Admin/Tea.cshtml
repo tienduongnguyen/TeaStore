@@ -119,7 +119,7 @@
                 <div id="root_@item.ID" style="margin:10px; flex:1;flex-direction:row;display:flex; border: 1px solid white;padding:10px;text-decoration:none"
                      onmousemove="onMoveMouseItem('root_@item.ID')" onmouseout="onMoveOutMouseOfItem('root_@item.ID')">
                     <a href="/Admin/Edit?id=@item.ID">
-                        <img src="@item.IMAGEs.First().URL" style="width:100px;height:100px ;object-fit:contain" />
+                        <img src="@item.IMAGEs.OrderBy(x => x.ORDER).First().URL" style="width:100px;height:100px ;object-fit:contain" />
                     </a>
                     <b class="title-tea">
                         @item.TITLE

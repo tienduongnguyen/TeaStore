@@ -199,11 +199,11 @@
         callAPIQuantity(id, $("#inputQuantity_" + id).val())
     }
 
-    let callAPIQuantity = (idCart, quantity) => {
+    let callAPIQuantity = (idCart, amount) => {
         $.ajax({
             type: "POST",
             url: `/User/ChangeAmount`,
-            data: { idCart, quantity },
+            data: { idCart, amount },
             success: data => { }
         });
     }
