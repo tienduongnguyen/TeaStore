@@ -52,7 +52,7 @@
                 }
             </div>
         </div>
-        <input class="form-control" name="ID" value="@Model.ID" hidden />
+        <input class="form-control" id="id_tea" name="ID" value="@Model.ID" hidden />
         <div class="col">
             <div class="col">
                 <div class="form-group">
@@ -197,7 +197,7 @@
             //    let img = $($("#images input")[i]).val()
             //}
             let oldOrder = $($("#images input")[2 * newOrder - 1]).val()
-            let idIMG = $($("#images input")[2 * newOrder - 2]).val()
+            let idIMG = $("#id_tea").val()
             callAPIchangeOrder(oldOrder, newOrder, idIMG)
         }
     });
