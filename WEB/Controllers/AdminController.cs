@@ -171,7 +171,7 @@ namespace taka.Controllers
             string Use)
         {
             TEA tea = dB.AddTea(Images, Title, Price, idCategory, Amount, Description, Story, Ingredient, Function, Caffein, Weight, Use);
-            return RedirectToAction("Detail", "Home", new { id = tea.ID });
+            return RedirectToAction("Tea", "Admin");
         }
 
         public ActionResult Add()
