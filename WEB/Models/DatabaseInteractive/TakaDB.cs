@@ -32,11 +32,11 @@ namespace taka.Models.DatabaseInteractive
     }
     public class TakaDB
     {
-        TakaDBContext takaDB;
+        TeaStoreModel takaDB;
 
         public TakaDB()
         {
-            takaDB = new TakaDBContext();
+            takaDB = new TeaStoreModel();
         }
 
         public ListTea GetListTea(int page = 1, string text = "", int cate = 0, int sort = 0, int pageSize = 12, int priceFrom = 0, int priceTo = 0)
@@ -117,7 +117,8 @@ namespace taka.Models.DatabaseInteractive
                 return null;
             USER user = new USER();
             user.PHONE = phone.Replace("+84", "0");
-            user.PASSWORD = HelperFunctions.sha256(password);
+            //user.PASSWORD = HelperFunctions.sha256(password);
+            user.PASSWORD = password;
             user.EMAIL = email;
             user.FULLNAME = fullname;
             user.GENDER = gender;
@@ -191,8 +192,8 @@ namespace taka.Models.DatabaseInteractive
 
         public USER Login(string phone, string password)
         {
-            string hashpass = HelperFunctions.sha256(password);
-            var user = takaDB.USERs.Where(x => x.PHONE == phone && x.PASSWORD == hashpass);
+            //string hashpass = HelperFunctions.sha256(password);
+            var user = takaDB.USERs.Where(x => x.PHONE == phone && x.PASSWORD == password);
             if (user.Count() > 0)
                 return user.First();
             return null;

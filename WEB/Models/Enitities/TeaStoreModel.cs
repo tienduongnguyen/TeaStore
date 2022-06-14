@@ -5,10 +5,10 @@ using System.Linq;
 
 namespace taka.Models.Enitities
 {
-    public partial class TakaDBContext : DbContext
+    public partial class TeaStoreModel : DbContext
     {
-        public TakaDBContext()
-            : base("name=TakaDBContext")
+        public TeaStoreModel()
+            : base("name=TeaStore")
         {
         }
 
@@ -19,6 +19,7 @@ namespace taka.Models.Enitities
         public virtual DbSet<ORDER> ORDERs { get; set; }
         public virtual DbSet<ORDER_DETAIL> ORDER_DETAIL { get; set; }
         public virtual DbSet<RATE> RATEs { get; set; }
+        public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
         public virtual DbSet<TEA> TEAs { get; set; }
         public virtual DbSet<USER> USERs { get; set; }
 
